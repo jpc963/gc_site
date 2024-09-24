@@ -14,9 +14,16 @@ interface CustomInput {
   name: FieldPath<z.infer<typeof formSchema>>
   label: string
   placeholder: string
+  id: string
 }
 
-const CustomInput = ({ control, name, label, placeholder }: CustomInput) => {
+const CustomInput = ({
+  control,
+  name,
+  label,
+  placeholder,
+  id,
+}: CustomInput) => {
   return (
     <FormField
       control={control}
@@ -33,6 +40,7 @@ const CustomInput = ({ control, name, label, placeholder }: CustomInput) => {
                 placeholder={placeholder}
                 className="text-[16px] placeholder:text-[16px] rounded-lg border border-gray-300 placeholder:text-gray-500"
                 type={name === "password" ? "password" : "text"}
+                id={id}
                 {...field}
               />
             </FormControl>

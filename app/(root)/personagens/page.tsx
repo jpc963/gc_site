@@ -1,6 +1,10 @@
+import ListaPersonagens from "@/components/ListaPersonagens"
+
 const Personagens = () => {
   return (
-    <div>Personagens</div>
+    <section>
+      <ListaPersonagens />
+    </section>
   )
 }
 export default Personagens

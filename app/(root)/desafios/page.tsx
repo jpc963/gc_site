@@ -5,7 +5,7 @@ import { DungeonsIcons, PersonagensIcons } from "@/constants"
 import Image from "next/image"
 import { useState } from "react"
 
-const Personagens = () => {
+const Desafios = () => {
   const [personagemDungeon, setPersonagemDungeon] = useState([
     {
       nome: "",
@@ -63,7 +63,7 @@ const Personagens = () => {
                 {DungeonsIcons.map((dungeon) => {
                   return (
                     <div
-                      className="w-10 h-8 text-center"
+                      className="w-10 h-8 text-center shadow-sm shadow-gray-900 flex justify-center items-center border-[#334258]"
                       key={dungeon.nome}
                     >
                       <Image
@@ -82,7 +82,7 @@ const Personagens = () => {
                         onClick={() =>
                           dungeonFeita(personagem.nome, dungeon.nome)
                         }
-                        className="cursor-pointer w-fit h-fit"
+                        className="cursor-pointer w-fit h-fit p-2"
                       />
                     </div>
                   )
@@ -96,4 +96,4 @@ const Personagens = () => {
   )
 }
 
-export default Personagens
+export default Desafios
