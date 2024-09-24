@@ -22,17 +22,14 @@ const Sidebar = () => {
             <Link
               href={item.route}
               key={item.label}
-              className={cn(
-                "sidebar-link",
-                { "bg-[#334258]": isActive }
-              )}
+              className={cn("sidebar-link", { "bg-gradient-to-r from-[#334258]": isActive })}
             >
               <div className="relative size-6">
                 <Image
                   src={item.imgUrl}
                   alt={item.label}
                   fill
-                  className="brightness-[3] invert-0"
+                  className="invert"
                 />
               </div>
 

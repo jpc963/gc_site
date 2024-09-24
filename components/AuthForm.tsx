@@ -81,16 +81,16 @@ const AuthForm = ({ type }: { type: string }) => {
 
         <div className="flex flex-col gap-1 md:gap-3">
           <h1 className="text-[24px] lg:text-[36px] font-semibold">
-            {user
-              ? "Link Account"
-              : type === "login"
-              ? "Entre com sua conta"
-              : "Crie sua conta"}
+            {user ? (
+              <Link href="/">Ir ao painel</Link>
+            ) : type === "login" ? (
+              "Entre com sua conta"
+            ) : (
+              "Crie sua conta"
+            )}
 
             <p className="text-[16px] font-normal text-gray-600">
-              {user
-                ? "Link your account to get started"
-                : "Please enter your details"}
+              Entre com os detalhes da sua conta
             </p>
           </h1>
         </div>

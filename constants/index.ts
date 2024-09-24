@@ -1,16 +1,16 @@
 export const SidebarLinks = [
   {
-    imgUrl: "/icons/home.svg",
+    imgUrl: "/icons/square-library.svg",
     route: "/",
     label: "Painel",
   },
   {
-    imgUrl: "/icons/home.svg",
+    imgUrl: "/icons/users.svg",
     route: "/personagens",
     label: "Personagens",
   },
   {
-    imgUrl: "/icons/home.svg",
+    imgUrl: "/icons/package-open.svg",
     route: "/armazem",
     label: "Armazém",
   },
@@ -131,5 +131,48 @@ export const PersonagensIcons = [
     imgUrl: "/icons/personagens/CharIcon_Kallia.webp",
     alt: "Kallia icon",
     nome: "Kallia",
+  },
+]
+
+export const DungeonsIcons = [
+  {
+    imgUrl: "/icons/dungeons/Fornalha_Infernal_Icon.webp",
+    alt: "Fornalha Infernal icon",
+    nome: "Fornalha Infernal",
+  },
+  {
+    imgUrl: "/icons/dungeons/Altar_da_Ruina_Icon.webp",
+    alt: "Altar da Ruína icon",
+    nome: "Altar da Ruína",
+  },
+  {
+    imgUrl: "/icons/dungeons/Torre_das_Ilusoes_Icon.webp",
+    alt: "Torre das Ilusões icon",
+    nome: "Torre das Ilusões",
+  },
+  {
+    imgUrl: "/icons/dungeons/Covil_de_Berkas_Icon.webp",
+    alt: "Covil de Berkas icon",
+    nome: "Covil de Berkas",
+  },
+  {
+    imgUrl: "/icons/dungeons/Torre_da_Extincao_Icon.webp",
+    alt: "Torre da Extinção icon",
+    nome: "Torre da Extinção",
+  },
+  {
+    imgUrl: "/icons/dungeons/Terra_do_Julgamento_Icon.webp",
+    alt: "Terra do Julgamento icon",
+    nome: "Terra do Julgamento",
+  },
+  {
+    imgUrl: "/icons/dungeons/Vazio_Icon.webp",
+    alt: "Vazio icon",
+    nome: "Vazio",
+  },
+  {
+    imgUrl: "/icons/dungeons/Vazio_Contaminacao_Icon.webp",
+    alt: "Vazio Contaminação icon",
+    nome: "Vazio Contaminação",
   },
 ]
