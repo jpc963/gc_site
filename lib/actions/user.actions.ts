@@ -8,6 +8,8 @@ import { parseStringify } from "../utils"
 const {
   APPWRITE_DATABASE_ID: DATABASE_ID,
   APPWRITE_USER_COLLECTION_ID: USER_COLLECTION_ID,
+  APPWRITE_PERSONAGENSUSER_COLLECTION_ID: PERSONAGENSUSER_COLLECTION_ID,
+  APPWRITE_PERSONAGENS_COLLECTION_ID: PERSONAGENS_COLLECTION_ID,
 } = process.env
 
 export const signIn = async ({ email, password }: signInParams) => {
@@ -99,18 +101,40 @@ export async function getUserInfo({ userId }: { userId: string }) {
   }
 }
 
-// export async function getPersonagensUser({ userId }: { userId: string }) {
-//   try {
-//     const { account } = await getLoggedInUser()
+export async function getPersonagens() {
+  try {
+    const { database } = await createAdminClient()
 
-//     const personagens = await account.get()
+    //retornar apenas a coluna nome
+    const personagens = await database.listDocuments(
+      DATABASE_ID!,
+      PERSONAGENS_COLLECTION_ID!,
+      [Query.select(["nome"])]
+    )
 
-//     return parseStringify(personagens)
-//   } catch (error) {
-//     console.log("[GET_PERSONAGENS_USER]: ", error)
-//     return null
-//   }
-// }
+    return parseStringify(personagens)
+  } catch (error) {
+    console.log("[GET_PERSONAGENS_USER]: ", error)
+    return null
+  }
+}
+
+export async function getPersonagensUser({ userId }: { userId: string }) {
+  try {
+    const { database } = await createAdminClient()
+
+    const personagens = await database.listDocuments(
+      DATABASE_ID!,
+      PERSONAGENSUSER_COLLECTION_ID!,
+      [Query.equal("userId", [userId])]
+    )
+
+    return parseStringify(personagens)
+  } catch (error) {
+    console.log("[GET_PERSONAGENS_USER]: ", error)
+    return null
+  }
+}
 
 export const logoutAccount = async () => {
   try {

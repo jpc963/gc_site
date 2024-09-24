@@ -1,15 +1,28 @@
-import { getLoggedInUser, getUserInfo } from "@/lib/actions/user.actions"
+import {
+  getLoggedInUser,
+  getPersonagens,
+  getUserInfo,
+} from "@/lib/actions/user.actions"
+import ButtonAddPersonagem from "./ButtonAddPersonagem"
 
 const ListaPersonagens = async () => {
   const loggedIn = await getLoggedInUser()
-  const { userId, possuiPersonagem } = await getUserInfo(loggedIn)
+  const listaPersonagens = await getPersonagens()
+  const { userId, personagens } = await getUserInfo(loggedIn)
 
   return (
-    <section className="flex flex-col items-center justify-center h-screen">
-      {possuiPersonagem ? (
+    <section className="flex items-center justify-center h-screen">
+      {personagens?.length > 0 ? (
         <div>Lista de personagens:</div>
       ) : (
-        <div>Você ainda não possui personagens</div>
+        <div className="flex flex-col gap-2">
+          <p>Você ainda não possui personagens</p>
+
+          <ButtonAddPersonagem
+            label="Adicionar personagem"
+            personagens={listaPersonagens}
+          />
+        </div>
       )}
     </section>
   )
