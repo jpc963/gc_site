@@ -10,6 +10,11 @@ export const SidebarLinks = [
     label: "Personagens",
   },
   {
+    imgUrl: "/icons/calendar-days.svg",
+    route: "/desafios",
+    label: "Desafios",
+  },
+  {
     imgUrl: "/icons/package-open.svg",
     route: "/armazem",
     label: "Armazém",

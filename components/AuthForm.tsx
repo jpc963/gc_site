@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { authFormSchema } from "@/lib/utils"
-import CustomInput from "./CustomInput"
-import { useForm } from "react-hook-form"
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import Link from "next/link"
-import Image from "next/image"
-import { Form } from "./ui/form"
-import { Button } from "./ui/button"
-import { Loader2 } from "lucide-react"
-import { signIn, signUp } from "@/lib/actions/user.actions"
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { authFormSchema } from "@/lib/utils";
+import CustomInput from "./CustomInput";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
+import { Form } from "./ui/form";
+import { Button } from "./ui/button";
+import { Loader2 } from "lucide-react";
+import { signIn, signUp } from "@/lib/actions/user.actions";
 
 const AuthForm = ({ type }: { type: string }) => {
-  const router = useRouter()
-  const [user, setUser] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter();
+  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const formSchema = authFormSchema(type)
+  const formSchema = authFormSchema(type);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -27,48 +27,43 @@ const AuthForm = ({ type }: { type: string }) => {
       email: "",
       password: "",
     },
-  })
+  });
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    setIsLoading(true)
+    setIsLoading(true);
 
     try {
       if (type === "registro") {
         const userData = {
           username: data.username!,
           email: data.email,
-          password: data.password!,
-        }
+          password: data.password,
+        };
 
-        const newUser = await signUp(userData)
+        const newUser = await signUp(userData);
 
-        setUser(newUser)
-
-        if (user) router.push("/")
+        setUser(newUser);
       }
 
       if (type === "login") {
         const response = await signIn({
           email: data.email,
           password: data.password,
-        })
+        });
 
-        if (response) router.push("/")
+        if (response) router.push("/");
       }
     } catch (error) {
-      console.log("[ON_SUBMIT]: ", error)
+      console.log("[ON_SUBMIT]: ", error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <section className="flex min-h-screen w-full max-w-[420px] flex-col justify-center gap-5 py-10 md:gap-8">
       <header className="flex flex-col gap-5 md:gap-8">
-        <Link
-          href="/"
-          className="flex items-center gap-1 cursor-pointer"
-        >
+        <Link href="/" className="flex cursor-pointer items-center gap-1">
           <Image
             src="/icons/home.svg"
             width={34}
@@ -76,11 +71,11 @@ const AuthForm = ({ type }: { type: string }) => {
             alt="Horizon logo"
           />
 
-          <h1 className="font-bold text-26">Horizon</h1>
+          <h1 className="text-26 font-bold">Horizon</h1>
         </Link>
 
         <div className="flex flex-col gap-1 md:gap-3">
-          <h1 className="text-[24px] lg:text-[36px] font-semibold">
+          <h1 className="text-[24px] font-semibold lg:text-[36px]">
             {user ? (
               <Link href="/">Ir ao painel</Link>
             ) : type === "login" ? (
@@ -97,10 +92,7 @@ const AuthForm = ({ type }: { type: string }) => {
       </header>
 
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8"
-        >
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           {type === "registro" && (
             <>
               <CustomInput
@@ -129,15 +121,12 @@ const AuthForm = ({ type }: { type: string }) => {
           <div className="flex flex-col gap-4">
             <Button
               type="submit"
-              className="text-[16px] rounded-lg border font-semibold text-white"
+              className="rounded-lg border text-[16px] font-semibold text-white"
               disabled={isLoading}
             >
               {isLoading ? (
                 <>
-                  <Loader2
-                    size={20}
-                    className="animate-spin"
-                  />
+                  <Loader2 size={20} className="animate-spin" />
                   &nbsp; Carregando...
                 </>
               ) : type === "login" ? (
@@ -157,13 +146,13 @@ const AuthForm = ({ type }: { type: string }) => {
 
         <Link
           href={type === "login" ? "/registro" : "/login"}
-          className="text-[14px] cursor-pointer font-medium text-[#6dc7cd]"
+          className="cursor-pointer text-[14px] font-medium text-[#6dc7cd]"
         >
           {type === "login" ? "Cadastrar" : "Login"}
         </Link>
       </footer>
     </section>
-  )
-}
+  );
+};
 
-export default AuthForm
+export default AuthForm;

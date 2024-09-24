@@ -18,7 +18,7 @@ const Topbar = ({ list, reset }: TopbarProps) => {
   }
 
   return (
-    <div className="flex flex-row sticky top-0 h-12 shadow-sm w-full bg-[#202b3c] justify-end">
+    <div className="flex flex-row sticky top-0 h-12 shadow-sm w-full justify-end from-[#202b3c] to-[#334258] bg-gradient-to-bl">
       <Button
         variant="ghost"
         className="rounded-none h-full hover:bg-slate-400 hover:text-white"

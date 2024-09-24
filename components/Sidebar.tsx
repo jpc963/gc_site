@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { SidebarLinks } from "@/constants"
-import { usePathname } from "next/navigation"
-import { cn } from "@/lib/utils"
-import Image from "next/image"
+import Link from "next/link";
+import { SidebarLinks } from "@/constants";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const Sidebar = () => {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <section className="sidebar">
@@ -16,15 +16,17 @@ const Sidebar = () => {
 
         {SidebarLinks.map((item) => {
           const isActive =
-            pathname === item.route || pathname.startsWith(`${item.route}/`)
+            pathname === item.route || pathname.startsWith(`${item.route}/`);
 
           return (
             <Link
               href={item.route}
               key={item.label}
-              className={cn("sidebar-link", { "bg-gradient-to-r from-[#334258]": isActive })}
+              className={cn("sidebar-link", {
+                "bg-gradient-to-r from-[#334258]": isActive,
+              })}
             >
-              <div className="relative size-6">
+              <div className="relative border-r border-separate pr-10 size-6">
                 <Image
                   src={item.imgUrl}
                   alt={item.label}
@@ -35,11 +37,11 @@ const Sidebar = () => {
 
               <p className="text-[16px] font-semibold">{item.label}</p>
             </Link>
-          )
+          );
         })}
       </nav>
     </section>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;
