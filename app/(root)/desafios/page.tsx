@@ -5,13 +5,15 @@ import { DungeonsIcons, PersonagensIcons } from "@/constants"
 import Image from "next/image"
 import { useState } from "react"
 
+type DungeonPersonagem = {
+  nome: string
+  dungeon: string
+}
+
 const Desafios = () => {
-  const [personagemDungeon, setPersonagemDungeon] = useState([
-    {
-      nome: "",
-      dungeon: "",
-    },
-  ])
+  const [personagemDungeon, setPersonagemDungeon] = useState<
+    DungeonPersonagem[]
+  >([])
 
   const dungeonFeita = (personagemNome: string, dungeonNome: string) => {
     if (

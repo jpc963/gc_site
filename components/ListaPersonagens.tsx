@@ -7,7 +7,7 @@ import ButtonAddPersonagem from "./ButtonAddPersonagem"
 
 const ListaPersonagens = async () => {
   const loggedIn = await getLoggedInUser()
-  const listaPersonagens = await getPersonagens()
+  const personagensDisponiveis = await getPersonagens()
   const { userId, personagens } = await getUserInfo(loggedIn)
 
   return (
@@ -20,7 +20,9 @@ const ListaPersonagens = async () => {
 
           <ButtonAddPersonagem
             label="Adicionar personagem"
-            personagens={listaPersonagens}
+            personagensDisponiveis={personagensDisponiveis}
+            personagensAdicionados={personagens}
+            user={userId}
           />
         </div>
       )}

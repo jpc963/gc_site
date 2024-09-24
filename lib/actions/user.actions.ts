@@ -105,7 +105,6 @@ export async function getPersonagens() {
   try {
     const { database } = await createAdminClient()
 
-    //retornar apenas a coluna nome
     const personagens = await database.listDocuments(
       DATABASE_ID!,
       PERSONAGENS_COLLECTION_ID!,
