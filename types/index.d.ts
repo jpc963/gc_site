@@ -18,11 +18,11 @@ declare type User = {
   vp: number
   pontosDiarios: number
   cLevel: number
-  possuiPersonagem: boolean
+  personagens: string[]
 }
 
 declare type Personagem = {
-  userId: string
+  userId?: string
   nome: string
   level: number
   gp: number

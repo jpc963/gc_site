@@ -26,3 +26,18 @@ export const authFormSchema = (type: string) =>
       .min(8, "A senha precisa conter no mínimo 8 caracteres.")
       .max(20, "A senha pode conter no máximo 20 caracteres."),
   })
+
+export const addPersonagemFormSchema = () =>
+  z.object({
+    nome: z.string(),
+    level: z
+      .number()
+      .min(1, "O level do personagem pode ser no mínimo 1.")
+      .max(85, "O level do personagem pode ser no máximo 85.")
+      .default(1),
+    gp: z
+      .number()
+      .min(0, "O gp do personagem pode ser no mínimo 0.")
+      .max(30000000, "O gp do personagem pode ser no máximo 30.000.000")
+      .default(0),
+  })
