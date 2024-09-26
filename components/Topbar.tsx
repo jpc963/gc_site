@@ -9,12 +9,16 @@ declare type List = {
 
 declare interface TopbarProps {
   list: List[]
-  reset: () => void
+  set: (value: List[]) => void
 }
 
-const Topbar = ({ list, reset }: TopbarProps) => {
+const Topbar = ({ list, set }: TopbarProps) => {
   const saveList = () => {
     console.log(list)
+  }
+
+  const resetList = () => {
+    set([])
   }
 
   return (
@@ -22,7 +26,7 @@ const Topbar = ({ list, reset }: TopbarProps) => {
       <Button
         variant="ghost"
         className="rounded-none h-full hover:bg-slate-400 hover:text-white"
-        onClick={() => reset()}
+        onClick={() => resetList()}
       >
         Reset
       </Button>
