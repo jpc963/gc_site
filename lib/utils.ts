@@ -23,7 +23,7 @@ export const authFormSchema = (type: string) =>
     email: z.string().email("Email inválido."),
     password: z
       .string()
-      .min(8, "A senha precisa conter no mínimo 8 caracteres.")
+      .min(6, "A senha precisa conter no mínimo 6 caracteres.")
       .max(20, "A senha pode conter no máximo 20 caracteres."),
   })
 

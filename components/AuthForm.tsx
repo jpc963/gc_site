@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { authFormSchema } from "@/lib/utils"
 import CustomInput from "./CustomInput"
 import { useForm } from "react-hook-form"
-import { useState } from "react"
+import React, { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
@@ -61,21 +61,16 @@ const AuthForm = ({ type }: { type: string }) => {
   }
 
   return (
-    <section className="flex min-h-screen w-full max-w-[420px] flex-col justify-center gap-5 py-10 md:gap-8">
+    <section className="flex w-full max-w-[500px] flex-col justify-center gap-5 md:gap-8 rounded-md shadow-2xl drop-shadow-2xl p-12">
       <header className="flex flex-col gap-5 md:gap-8">
-        <Link
-          href="/"
-          className="flex cursor-pointer items-center gap-1"
-        >
+        <div className="w-full flex justify-center">
           <Image
-            src="/icons/home.svg"
-            width={34}
+            src="/icons/Grand_Chase_Logo.webp"
+            width={250}
             height={34}
             alt="Horizon logo"
           />
-
-          <h1 className="text-26 font-bold">Horizon</h1>
-        </Link>
+        </div>
 
         <div className="flex flex-col gap-1 md:gap-3">
           <h1 className="text-[24px] font-semibold lg:text-[36px]">
@@ -87,7 +82,7 @@ const AuthForm = ({ type }: { type: string }) => {
               "Crie sua conta"
             )}
 
-            <p className="text-[16px] font-normal text-gray-600">
+            <p className="text-[16px] font-normal text-gray-400">
               Entre com os detalhes da sua conta
             </p>
           </h1>
@@ -100,15 +95,13 @@ const AuthForm = ({ type }: { type: string }) => {
           className="space-y-8"
         >
           {type === "registro" && (
-            <>
-              <CustomInput
-                control={form.control}
-                name="username"
-                label="Usuário"
-                placeholder="Digite seu nome de usuário"
-                id="username"
-              />
-            </>
+            <CustomInput
+              control={form.control}
+              name="username"
+              label="Usuário"
+              placeholder="Digite seu nome de usuário"
+              id="username"
+            />
           )}
 
           <CustomInput
@@ -130,17 +123,17 @@ const AuthForm = ({ type }: { type: string }) => {
           <div className="flex flex-col gap-4">
             <Button
               type="submit"
-              className="rounded-lg border text-[16px] font-semibold text-white"
+              className="text-[16px] font-semibold text-white"
               disabled={isLoading}
             >
               {isLoading ? (
-                <>
+                <React.Fragment>
                   <Loader2
                     size={20}
                     className="animate-spin"
                   />
                   &nbsp; Carregando...
-                </>
+                </React.Fragment>
               ) : type === "login" ? (
                 "Entrar"
               ) : (
@@ -160,7 +153,7 @@ const AuthForm = ({ type }: { type: string }) => {
           href={type === "login" ? "/registro" : "/login"}
           className="cursor-pointer text-[14px] font-medium text-[#6dc7cd]"
         >
-          {type === "login" ? "Cadastrar" : "Login"}
+          {type === "login" ? "Cadastrar" : "Entrar"}
         </Link>
       </footer>
     </section>

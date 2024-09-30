@@ -1,24 +1,18 @@
-import Image from "next/image"
+import { cookies } from "next/headers"
+import { redirect } from "next/navigation"
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return (
-    <main className="flex min-h-screen w-full justify-between">
-      {children}
+  const loggedIn = cookies().get("appwrite-session") || null
 
-      <div className="flex h-screen w-full sticky top-0 items-center justify-end bg-white">
-        <div>
-          <Image
-            src="/icons/home.svg"
-            alt="Auth image"
-            width={600}
-            height={600}
-          />
-        </div>
-      </div>
+  if (loggedIn) redirect("/")
+
+  return (
+    <main className="flex min-h-screen w-full justify-between items-center">
+      {children}
     </main>
   )
 }

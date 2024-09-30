@@ -139,6 +139,32 @@ export const PersonagensIcons = [
   },
 ]
 
+export const PersonagensNomes = [
+  "Elesis",
+  "Lire",
+  "Arme",
+  "Lass",
+  "Ryan",
+  "Ronan",
+  "Amy",
+  "Jin",
+  "Sieghart",
+  "Mari",
+  "Dio",
+  "Zero",
+  "Rey",
+  "Lupus",
+  "Veigas",
+  "Lin",
+  "Azin",
+  "Holy",
+  "Edel",
+  "Uno",
+  "Decanee",
+  "Ai",
+  "Kallia",
+]
+
 export const DungeonsIcons = [
   {
     imgUrl: "/icons/dungeons/Fornalha_Infernal_Icon.webp",
