@@ -23,23 +23,20 @@ import { cn } from "@/lib/utils"
 declare type ButtonAddPersonagemProps = {
   label: string
   userId: string
-  personagensDisponiveis: string[]
   personagensAdicionados: string[]
 }
 
 const ButtonAddPersonagem = ({
   label,
-  personagensDisponiveis,
   personagensAdicionados,
   userId,
 }: ButtonAddPersonagemProps) => {
-  //vai adicionar o personagem nessa lista, e depois vai alterar os personagens adicionados com os devidos leveis e gp
-  // const [personagemAdd, setPersonagemAdd] = useState<Personagem[]>([])
+  const listaNaoAdicionados = PersonagensIcons.filter(
+    (char) => !personagensAdicionados.includes(char.nome)
+  )
   const [nomeChar, setNomeChar] = useState("")
 
   const [selecionado, setSelecionado] = useState(false)
-
-  const [isLoading, setIsLoading] = useState(false)
 
   const openInputs = (nome: string) => {
     if (!selecionado) {
@@ -49,35 +46,43 @@ const ButtonAddPersonagem = ({
     setNomeChar(nome)
   }
 
+  const close = () => {
+    setSelecionado(false)
+    setNomeChar("")
+  }
+
   return (
-    <Dialog onOpenChange={() => setSelecionado(false)}>
+    <Dialog onOpenChange={() => close()}>
       <DialogTrigger asChild>
         <Button>{label}</Button>
       </DialogTrigger>
 
       <DialogContent className="bg-[#334258] min-w-fit border-none shadow-sm">
-        <DialogTitle>Adicionar personagem</DialogTitle>
-        <DialogDescription>Descrição do personagem</DialogDescription>
+        <DialogTitle className="text-center font-semibold text-2xl text-white">
+          {nomeChar ? nomeChar : "Selecione o personagem"}
+        </DialogTitle>
+
+        <DialogDescription />
+
         <div
-          className={cn("flex gap-2 items-center justify-center flex-row", {
+          className={cn("flex flex-row items-center justify-around mb-4", {
             hidden: !selecionado,
           })}
         >
-          <div className="">[IMAGEM COMPLETA DO PERSONAGEM]</div>
+          <div>[IMAGEM COMPLETA DO PERSONAGEM]</div>
 
-          <AddCharForm
-            // personagemAdd={personagemAdd}
-            isLoading={isLoading}
-            // setPersonagemAdd={setPersonagemAdd}
-            setIsLoading={setIsLoading}
-            nomeChar={nomeChar}
-            userId={userId}
-          />
+          <div>
+            <AddCharForm
+              nomeChar={nomeChar}
+              userId={userId}
+              lista={listaNaoAdicionados}
+            />
+          </div>
         </div>
 
         <TooltipProvider>
           <div className="grid grid-flow-col grid-rows-2 gap-2 items-center justify-center">
-            {PersonagensIcons.map((img) => (
+            {listaNaoAdicionados.map((img) => (
               <Tooltip key={img.nome}>
                 <TooltipTrigger asChild>
                   <Image

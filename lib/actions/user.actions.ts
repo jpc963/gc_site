@@ -113,7 +113,7 @@ export async function getPersonagensUser({ userId }: { userId: string }) {
     return parseStringify(personagens)
   } catch (error) {
     console.log("[GET_PERSONAGENS_USER]: ", error)
-    return null
+    return []
   }
 }
 
@@ -130,7 +130,7 @@ export async function addPersonagensUser({ ...data }: Personagem) {
 
     if (!criar) throw new Error("Erro ao adicionar personagens")
 
-    return parseStringify(data)
+    return "OK"
   } catch (error) {
     console.log("[ADD_PERSONAGENS_USER]: ", error)
     return null

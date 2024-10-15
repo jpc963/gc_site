@@ -30,7 +30,7 @@ export const authFormSchema = (type: string) =>
 
 export const addPersonagemFormSchema = () =>
   z.object({
-    $userId: z.string(),
+    userId: z.string(),
     nome: z.string(),
     level: z
       .number()

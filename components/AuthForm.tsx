@@ -27,7 +27,7 @@ const AuthForm = ({ type }: { type: string }) => {
     },
   })
 
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+  const enviar = async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true)
 
     try {
@@ -85,7 +85,7 @@ const AuthForm = ({ type }: { type: string }) => {
 
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(onSubmit)}
+          onSubmit={form.handleSubmit(enviar)}
           className="space-y-8"
         >
           {type === "registro" && (

@@ -9,24 +9,17 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import CustomInputChar from "./CustomInputChar"
 import { addPersonagensUser } from "@/lib/actions/user.actions"
+import { useState } from "react"
 
 interface AddCharFormProps {
-  // personagemAdd: Personagem[]
-  // setPersonagemAdd: (personagem: Personagem[]) => void
   userId: string
   nomeChar: string
-  isLoading: boolean
-  setIsLoading: (isLoading: boolean) => void
+  lista: { imgUrl: string; alt: string; nome: string }[]
 }
 
-const AddCharForm = ({
-  // personagemAdd,
-  // setPersonagemAdd,
-  userId,
-  isLoading,
-  setIsLoading,
-  nomeChar,
-}: AddCharFormProps) => {
+const AddCharForm = ({ userId, nomeChar, lista }: AddCharFormProps) => {
+  const [isLoading, setIsLoading] = useState(false)
+
   const formSchema = addPersonagemFormSchema()
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -35,30 +28,30 @@ const AddCharForm = ({
       nome: "",
       level: 1,
       gp: 0,
-      $userId: userId,
+      userId,
     },
   })
 
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+  const adicionar = async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true)
     data.gp = Number(data.gp)
     data.nome = nomeChar
 
-    // setPersonagemAdd([...personagemAdd, { ...personagem }])
-
     await addPersonagensUser({ ...data }).then(() => {
-      setIsLoading(false)
+      lista.filter((char) => char.nome !== nomeChar)
     })
+
+    form.reset()
+
+    setIsLoading(false)
   }
 
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-8"
+        onSubmit={form.handleSubmit(adicionar)}
       >
-        <h3>{nomeChar}</h3>
-
         <CustomInputChar
           control={form.control}
           name="level"
@@ -76,7 +69,7 @@ const AddCharForm = ({
         <div className="flex flex-col gap-4">
           <Button
             type="submit"
-            className="rounded-lg border text-[16px] font-semibold text-white"
+            className="text-[16px] font-semibold text-white"
             disabled={isLoading}
           >
             {isLoading ? (
