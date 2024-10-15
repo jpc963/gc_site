@@ -6,6 +6,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+//eslint-disable-next-line
 export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value))
 
 export const authFormSchema = (type: string) =>
@@ -29,13 +30,14 @@ export const authFormSchema = (type: string) =>
 
 export const addPersonagemFormSchema = () =>
   z.object({
+    $userId: z.string(),
     nome: z.string(),
     level: z
       .number()
       .min(1, "O level do personagem pode ser no mínimo 1.")
       .max(85, "O level do personagem pode ser no máximo 85.")
       .default(1),
-    gp: z
+    gp: z.coerce
       .number()
       .min(0, "O gp do personagem pode ser no mínimo 0.")
       .max(30000000, "O gp do personagem pode ser no máximo 30.000.000")

@@ -6,16 +6,14 @@ import { authFormSchema } from "@/lib/utils"
 import CustomInput from "./CustomInput"
 import { useForm } from "react-hook-form"
 import React, { useState } from "react"
-import { useRouter } from "next/navigation"
 import Link from "next/link"
-import Image from "next/image"
 import { Form } from "./ui/form"
 import { Button } from "./ui/button"
 import { Loader2 } from "lucide-react"
 import { signIn, signUp } from "@/lib/actions/user.actions"
+import Logo from "./Logo"
 
 const AuthForm = ({ type }: { type: string }) => {
-  const router = useRouter()
   const [user, setUser] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -24,8 +22,8 @@ const AuthForm = ({ type }: { type: string }) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: "joao@gmail.com",
+      password: "testeteste",
     },
   })
 
@@ -46,12 +44,10 @@ const AuthForm = ({ type }: { type: string }) => {
       }
 
       if (type === "login") {
-        const response = await signIn({
+        await signIn({
           email: data.email,
           password: data.password,
         })
-
-        if (response) router.push("/")
       }
     } catch (error) {
       console.log("[ON_SUBMIT]: ", error)
@@ -64,11 +60,9 @@ const AuthForm = ({ type }: { type: string }) => {
     <section className="flex w-full max-w-[500px] flex-col justify-center gap-5 md:gap-8 rounded-md shadow-2xl drop-shadow-2xl p-12">
       <header className="flex flex-col gap-5 md:gap-8">
         <div className="w-full flex justify-center">
-          <Image
-            src="/icons/Grand_Chase_Logo.webp"
-            width={250}
-            height={34}
-            alt="Horizon logo"
+          <Logo
+            w={250}
+            h={0}
           />
         </div>
 

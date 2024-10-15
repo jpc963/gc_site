@@ -1,30 +1,26 @@
-"use client"
-
-import { Control, FieldPath } from "react-hook-form"
+import { addPersonagemFormSchema } from "@/lib/utils"
 import { FormControl, FormField, FormLabel, FormMessage } from "./ui/form"
-
 import { Input } from "./ui/input"
-import { authFormSchema } from "@/lib/utils"
+import { Control, FieldPath } from "react-hook-form"
 import { z } from "zod"
 
-//eslint-disable-next-line
-const formSchema = authFormSchema("registro")
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const formSchemaChar = addPersonagemFormSchema()
 
-interface CustomInputProps {
-  control: Control<z.infer<typeof formSchema>>
-  name: FieldPath<z.infer<typeof formSchema>>
+interface CustomInputPropsChar {
+  control: Control<z.infer<typeof formSchemaChar>>
+  name: FieldPath<z.infer<typeof formSchemaChar>>
   label: string
-  placeholder: string
+  placeholder?: string
   id: string
 }
 
-const CustomInput = ({
+const CustomInputChar = ({
   control,
   name,
   label,
-  placeholder,
   id,
-}: CustomInputProps) => {
+}: CustomInputPropsChar) => {
   return (
     <FormField
       control={control}
@@ -38,9 +34,8 @@ const CustomInput = ({
           <div className="flex w-full flex-col">
             <FormControl>
               <Input
-                placeholder={placeholder}
+              placeholder=""
                 className="text-[16px] placeholder:text-[16px] placeholder:text-gray-500"
-                type={name === "password" ? "password" : "text"}
                 id={id}
                 {...field}
               />
@@ -53,5 +48,4 @@ const CustomInput = ({
     />
   )
 }
-
-export default CustomInput
+export default CustomInputChar

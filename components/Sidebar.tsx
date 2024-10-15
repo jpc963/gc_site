@@ -5,6 +5,8 @@ import { SidebarLinks } from "@/constants"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
+import FooterSidebar from "./FooterSidebar"
+import Logo from "./Logo"
 
 const Sidebar = () => {
   const pathname = usePathname()
@@ -13,11 +15,9 @@ const Sidebar = () => {
     <section className="sidebar">
       <nav className="flex flex-col gap-4">
         <div className="flex flex-col items-center">
-          <Image
-            src="/icons/Grand_Chase_Logo.webp"
-            width={150}
-            height={150}
-            alt="Grand Chase Logo"
+          <Logo
+            w={190}
+            h={0}
           />
 
           <h1 className="mb-12 text-[26px] font-bold">Tracker</h1>
@@ -49,6 +49,8 @@ const Sidebar = () => {
           )
         })}
       </nav>
+
+      <FooterSidebar />
     </section>
   )
 }

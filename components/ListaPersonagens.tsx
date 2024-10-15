@@ -1,13 +1,10 @@
-import {
-  getLoggedInUser,
-  getPersonagens,
-  getUserInfo,
-} from "@/lib/actions/user.actions"
+import { getLoggedInUser, getUserInfo } from "@/lib/actions/user.actions"
 import ButtonAddPersonagem from "./ButtonAddPersonagem"
+import { PersonagensNomes } from "@/constants"
 
 const ListaPersonagens = async () => {
   const loggedIn = await getLoggedInUser()
-  const personagensDisponiveis = await getPersonagens()
+  const personagensDisponiveis = PersonagensNomes
   const { userId, personagens } = await getUserInfo(loggedIn)
 
   return (
@@ -22,7 +19,7 @@ const ListaPersonagens = async () => {
             label="Adicionar personagem"
             personagensDisponiveis={personagensDisponiveis}
             personagensAdicionados={personagens}
-            user={userId}
+            userId={userId}
           />
         </div>
       )}

@@ -13,7 +13,7 @@ declare type User = {
   $id: string
   username: string
   email: string
-  userId: string
+  $userId: string
   premium: boolean
   vp: number
   pontosDiarios: number
@@ -22,13 +22,8 @@ declare type User = {
 }
 
 declare type Personagem = {
-  userId?: string
+  $userId: string
   nome: string
   level: number
   gp: number
-}
-
-declare interface PersonagensUser {
-  user: User
-  personagens: Personagem[]
 }

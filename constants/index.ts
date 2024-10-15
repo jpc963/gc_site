@@ -124,8 +124,8 @@ export const PersonagensIcons = [
   },
   {
     imgUrl: "/icons/personagens/CharIcon_Decanee.webp",
-    alt: "Decanee icon",
-    nome: "Decanee",
+    alt: "Decane icon",
+    nome: "Decane",
   },
   {
     imgUrl: "/icons/personagens/CharIcon_Ai.webp",
@@ -160,7 +160,7 @@ export const PersonagensNomes = [
   "Holy",
   "Edel",
   "Uno",
-  "Decanee",
+  "Decane",
   "Ai",
   "Kallia",
 ]
