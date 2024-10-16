@@ -27,3 +27,32 @@ declare type Personagem = {
   level: number
   gp: number
 }
+
+declare type ImgChar = {
+  imgUrl: string
+  nome: string
+  alt: string
+}
+
+declare type EditPersonagem = {
+  userId: string
+  $id: string
+  nome: string
+  level: number
+  gp: number
+}
+
+declare interface AddCharFormProps {
+  userId: string
+  nomeChar: string
+  lista: ImgChar[]
+}
+
+declare interface EditPersonagemProps {
+  personagem: EditPersonagem
+}
+
+declare interface EditImgCharProps {
+  personagem: EditPersonagem
+  img: ImgChar
+}

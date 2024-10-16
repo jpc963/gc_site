@@ -11,12 +11,6 @@ import CustomInputChar from "./CustomInputChar"
 import { addPersonagensUser } from "@/lib/actions/user.actions"
 import { useState } from "react"
 
-interface AddCharFormProps {
-  userId: string
-  nomeChar: string
-  lista: { imgUrl: string; alt: string; nome: string }[]
-}
-
 const AddCharForm = ({ userId, nomeChar, lista }: AddCharFormProps) => {
   const [isLoading, setIsLoading] = useState(false)
 
@@ -34,7 +28,6 @@ const AddCharForm = ({ userId, nomeChar, lista }: AddCharFormProps) => {
 
   const adicionar = async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true)
-    data.gp = Number(data.gp)
     data.nome = nomeChar
 
     await addPersonagensUser({ ...data }).then(() => {
@@ -42,8 +35,8 @@ const AddCharForm = ({ userId, nomeChar, lista }: AddCharFormProps) => {
     })
 
     form.reset()
-
     setIsLoading(false)
+    window.location.reload()
   }
 
   return (

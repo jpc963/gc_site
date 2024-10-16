@@ -71,6 +71,8 @@ export const signUp = async ({ password, ...userData }: signUpParams) => {
 }
 
 export async function getLoggedInUser() {
+  if (!cookies().get("appwrite-session")) return null
+
   try {
     const { account } = await createSessionClient()
     const result = await account.get()
@@ -109,6 +111,7 @@ export async function getPersonagensUser({ userId }: { userId: string }) {
       PERSONAGENSUSER_COLLECTION_ID!,
       [Query.equal("userId", [userId])]
     )
+    console.log(personagens)
 
     return parseStringify(personagens)
   } catch (error) {
@@ -128,11 +131,31 @@ export async function addPersonagensUser({ ...data }: Personagem) {
       { ...data }
     )
 
-    if (!criar) throw new Error("Erro ao adicionar personagens")
+    if (!criar) throw new Error("Erro ao adicionar personagem")
 
     return "OK"
   } catch (error) {
     console.log("[ADD_PERSONAGENS_USER]: ", error)
+    return null
+  }
+}
+
+export async function editPersonagensUser({ $id, ...data }: EditPersonagem) {
+  try {
+    const { database } = await createAdminClient()
+
+    const editar = await database.updateDocument(
+      DATABASE_ID!,
+      PERSONAGENSUSER_COLLECTION_ID!,
+      $id,
+      { ...data }
+    )
+
+    if (!editar) throw new Error("Erro ao editar personagem")
+
+    return "OK"
+  } catch (error) {
+    console.log("[EDIT_PERSONAGENS_USER]: ", error)
     return null
   }
 }

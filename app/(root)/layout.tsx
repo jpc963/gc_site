@@ -11,10 +11,10 @@ export default async function RootLayout({
   if (!loggedIn) redirect("/login")
 
   return (
-    <main className="w-full h-full flex">
+    <main className="w-full flex">
       <Sidebar />
 
-      <div className="flex flex-col w-full h-full">{children}</div>
+      <div className="flex flex-col w-full">{children}</div>
     </main>
   )
 }

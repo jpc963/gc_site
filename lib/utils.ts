@@ -32,7 +32,7 @@ export const addPersonagemFormSchema = () =>
   z.object({
     userId: z.string(),
     nome: z.string(),
-    level: z
+    level: z.coerce
       .number()
       .min(1, "O level do personagem pode ser no mínimo 1.")
       .max(85, "O level do personagem pode ser no máximo 85.")
@@ -40,6 +40,23 @@ export const addPersonagemFormSchema = () =>
     gp: z.coerce
       .number()
       .min(0, "O gp do personagem pode ser no mínimo 0.")
-      .max(30000000, "O gp do personagem pode ser no máximo 30.000.000")
+      .max(40000000, "O gp do personagem pode ser no máximo 40.000.000")
+      .default(0),
+  })
+
+export const editPersonagemFormSchema = () =>
+  z.object({
+    userId: z.string(),
+    $id: z.string(),
+    nome: z.string(),
+    level: z.coerce
+      .number()
+      .min(1, "O level do personagem pode ser no mínimo 1.")
+      .max(85, "O level do personagem pode ser no máximo 85.")
+      .default(1),
+    gp: z.coerce
+      .number()
+      .min(0, "O gp do personagem pode ser no mínimo 0.")
+      .max(40000000, "O gp do personagem pode ser no máximo 40.000.000")
       .default(0),
   })

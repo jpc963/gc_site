@@ -23,16 +23,18 @@ import { cn } from "@/lib/utils"
 declare type ButtonAddPersonagemProps = {
   label: string
   userId: string
-  personagensAdicionados: string[]
+  personagensAdicionados: { nome: string; level: number }[]
+  className?: string
 }
 
 const ButtonAddPersonagem = ({
   label,
   personagensAdicionados,
   userId,
+  className,
 }: ButtonAddPersonagemProps) => {
   const listaNaoAdicionados = PersonagensIcons.filter(
-    (char) => !personagensAdicionados.includes(char.nome)
+    (char) => !personagensAdicionados.find((p) => p.nome === char.nome)
   )
   const [nomeChar, setNomeChar] = useState("")
 
@@ -54,7 +56,7 @@ const ButtonAddPersonagem = ({
   return (
     <Dialog onOpenChange={() => close()}>
       <DialogTrigger asChild>
-        <Button>{label}</Button>
+        <Button className={className}>{label}</Button>
       </DialogTrigger>
 
       <DialogContent className="bg-[#334258] min-w-fit border-none shadow-sm">
