@@ -1,4 +1,4 @@
-import ListaPersonagens from "@/components/ListaPersonagens"
+import ListaPersonagens from "./_components/ListaPersonagens"
 
 const Personagens = () => {
   return (

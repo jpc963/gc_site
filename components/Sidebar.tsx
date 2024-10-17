@@ -32,7 +32,7 @@ const Sidebar = () => {
               href={item.route}
               key={item.label}
               className={cn("sidebar-link", {
-                "bg-gradient-to-r from-[#334258]": isActive,
+                "bg-gradient-to-r from-[#130f40]": isActive,
               })}
             >
               <div className="relative border-r border-separate pr-10 size-6">

@@ -111,7 +111,6 @@ export async function getPersonagensUser({ userId }: { userId: string }) {
       PERSONAGENSUSER_COLLECTION_ID!,
       [Query.equal("userId", [userId])]
     )
-    console.log(personagens)
 
     return parseStringify(personagens)
   } catch (error) {
