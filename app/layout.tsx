@@ -1,22 +1,12 @@
 import type { Metadata } from "next"
-import localFont from "next/font/local"
+import { Kanit } from "next/font/google"
 import "./globals.css"
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-})
-
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-})
+const kanit = Kanit({ subsets: ["latin"], weight: ["300", "400", "600"] })
 
 export const metadata: Metadata = {
   title: "GC Tracker",
-  description: "A definitive tracker for Grand Chase Classic",
+  description: "Acompanhe seu progresso no Grand Chase Classic",
 }
 
 export default function RootLayout({
@@ -27,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-bl from-[#30336b] to-[#130f40] text-white`}
+        className={`${kanit.className} antialiased bg-gradient-to-bl from-[#30336b] to-[#130f40] text-white`}
       >
         {children}
       </body>

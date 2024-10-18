@@ -1,9 +1,5 @@
-import React from 'react'
-
 const Armazem = () => {
-  return (
-    <div>Armazem</div>
-  )
+  return <section className="w-full h-full">armazem</section>
 }
 
 export default Armazem
