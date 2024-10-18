@@ -11,7 +11,7 @@ const PersonagemPopover = ({ personagem, img }: EditImgCharProps) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <div className="w-full h-fit bg-[#130f40] flex flex-row justify-between gap-4 shadow-lg rounded-sm border border-[#30336b]">
+        <div className="w-full h-fit bg-[#130f40] flex flex-row justify-between gap-4 shadow-md shadow-[#0f172a96] rounded-sm border border-[#30336b]">
           <AspectRatio
             ratio={16 / 7}
             className="rounded-l-sm"
@@ -19,7 +19,7 @@ const PersonagemPopover = ({ personagem, img }: EditImgCharProps) => {
             <Image
               src={img.imgUrl}
               alt={`Imagem do personagem ${img.nome}`}
-              quality={100}
+              quality={80}
               fill
               loading="lazy"
               className="object-cover"
@@ -42,7 +42,7 @@ const PersonagemPopover = ({ personagem, img }: EditImgCharProps) => {
         </div>
       </PopoverTrigger>
 
-      <PopoverContent className="w-80 bg-[#130f40] bg-gradient-to-tl from-[10%] text-white border-[#30336b] shadow-lg">
+      <PopoverContent className="w-80 bg-[#130f40] bg-gradient-to-tl from-[10%] text-white border-[#30336b] shadow-md shadow-[#0f172a96]">
         <EditCharForm personagem={personagem} />
       </PopoverContent>
     </Popover>

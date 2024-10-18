@@ -60,17 +60,20 @@ const ButtonAddPersonagem = ({
         <Button className={className}>{label}</Button>
       </DialogTrigger>
 
-      <DialogContent className="bg-[#130f40] border-[#30336b] min-w-fit w-full border-none">
-        <DialogTitle className="text-center font-semibold text-2xl text-white">
+      <DialogContent className="bg-[rgb(28,28,45)] border-none min-w-full p-4 2xl:p-2 2xl:min-w-[1200px]">
+        <DialogTitle className="text-center font-semibold text-2xl">
           {nomeChar ? nomeChar : "Selecione o personagem"}
         </DialogTitle>
 
         <DialogDescription />
 
         <div
-          className={cn("flex flex-row items-center justify-center gap-8 mb-4", {
-            hidden: !selecionado,
-          })}
+          className={cn(
+            "flex flex-row items-center justify-evenly mb-4",
+            {
+              hidden: !selecionado,
+            }
+          )}
         >
           <div>[IMAGEM COMPLETA DO PERSONAGEM]</div>
 
@@ -83,22 +86,23 @@ const ButtonAddPersonagem = ({
           </div>
         </div>
 
-        <Separator className="my-4"/>
-
+        <Separator className="my-4" />
         <TooltipProvider delayDuration={300}>
-          <div className="grid grid-flow-col grid-rows-2 gap-2 items-center justify-center">
+          <div className="flex flex-row flex-wrap gap-2 justify-center mb-4">
             {listaNaoAdicionados.map((img) => (
               <Tooltip key={img.nome}>
-                <TooltipTrigger asChild>
-                  <Image
-                    src={img.imgUrl}
-                    alt={img.alt}
-                    width={80}
-                    height={80}
-                    className="cursor-pointer"
-                    onClick={() => openInputs(img.nome)}
-                  />
-                </TooltipTrigger>
+                <div className="relative w-28 h-24 rounded-sm bg-[rgba(107,100,243,0.43)] border shadow-[#0f172a96] shadow-inner">
+                  <TooltipTrigger asChild>
+                    <Image
+                      src={img.imgUrl}
+                      alt={img.alt}
+                      quality={80}
+                      fill
+                      className="cursor-pointer object-cover"
+                      onClick={() => openInputs(img.nome)}
+                    />
+                  </TooltipTrigger>
+                </div>
 
                 <TooltipContent className="bg-[#202b3c]">
                   {img.nome}

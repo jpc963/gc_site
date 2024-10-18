@@ -1,12 +1,11 @@
 import { PersonagensIcons } from "@/constants"
-import ButtonAddPersonagem from "./ButtonAddPersonagem"
 import {
   getLoggedInUser,
   getPersonagensUser,
   getUserInfo,
 } from "@/lib/actions/user.actions"
 import TopbarPersonagens from "./TopbarPersonagens"
-import PersonagemPopover from "./PersonagemPopover"
+import CardChar from "./CardChar"
 
 const ListaPersonagens = async () => {
   const loggedIn = await getLoggedInUser()
@@ -18,6 +17,7 @@ const ListaPersonagens = async () => {
       userId: string
       $id: string
       nome: string
+      totalAtk: number
       level: number
       gp: number
     }[]
@@ -39,25 +39,15 @@ const ListaPersonagens = async () => {
       />
 
       {documents?.length > 0 && (
-        <div className="grid grid-cols-2 2xl:grid-cols-4 h-full p-2 gap-2">
+        <div className="flex flex-row flex-wrap w-full gap-4 p-6 justify-center">
           {listaImgs.map((img, index) => (
-            <PersonagemPopover
+            <CardChar
               key={index}
               img={img}
               personagem={listaAdicionados[index]}
             />
           ))}
         </div>
-      )}
-
-      {documents?.length === 0 && (
-        <>
-          <ButtonAddPersonagem
-            label="Adicionar personagem"
-            personagensAdicionados={listaAdicionados}
-            userId={userId}
-          />
-        </>
       )}
     </>
   )

@@ -25,9 +25,10 @@ export const signIn = async ({ email, password }: signInParams) => {
 
     const user = await getUserInfo({ userId: session.userId })
 
-    return parseStringify(user)
+    return await parseStringify(user)
   } catch (error) {
     console.log("[SIGN_IN]: ", error)
+    return null
   }
 }
 
@@ -71,17 +72,17 @@ export const signUp = async ({ password, ...userData }: signUpParams) => {
 }
 
 export async function getLoggedInUser() {
-  if (!cookies().get("appwrite-session")) return null
-
   try {
     const { account } = await createSessionClient()
     const result = await account.get()
 
     const user = await getUserInfo({ userId: result.$id })
 
-    return parseStringify(user)
+    return await parseStringify(user)
+
+    //eslint-disable-next-line
   } catch (error) {
-    console.log("[GET_LOGGED_IN_USER]: ", error)
+    console.log("[GET_LOGGED_IN_USER]: ", 'NO SESSION')
     return null
   }
 }
@@ -96,9 +97,10 @@ export async function getUserInfo({ userId }: { userId: string }) {
       [Query.equal("userId", [userId])]
     )
 
-    return parseStringify(user.documents[0])
+    return await parseStringify(user.documents[0])
   } catch (error) {
-    console.log(error)
+    console.log("[GET_USER_INFO]: ", error)
+    return null
   }
 }
 
@@ -164,7 +166,7 @@ export const logoutAccount = async () => {
     const { account } = await createSessionClient()
 
     cookies().delete("appwrite-session")
-
+    
     await account.deleteSession("current")
   } catch (error) {
     console.log("[LOGOUT_ACCOUNT]: ", error)

@@ -1,31 +1,31 @@
 {
-  "lojaHeroica": [
-    { "moedaEpic": 0 },
-    { "pedacoMoedaEpic": 0 },
-    { "nucleoVulcanus": 0 },
-    { "nucleoNemophi": 0 },
-    { "nucleoGrandiel": 0 },
-    { "simbTerraJulga": 0 },
-    { "peroPrecHeroi": 0 }
-  ],
-  "fragmentos": [
-    { "fragAnelHark": 0 },
-    { "fragBrincoHark": 0 },
-    { "fragVisuChase": 0 },
-    { "fragPortal": 0 }
-  ],
-  "tickets": [
-    { "tickDesafioEpic": 0 },
-    { "tickOutroMundo": 0 },
-    { "tickEvento": 0 },
-    { "tickRaid": 0 }
-  ],
-  "pergaminho": [
-    { "propGp": 0 },
-    { "propUnica": 0 },
-    { "altAtrib": 0 },
-    { "redAtrib": 0 },
-    { "fort16": 0 },
-    { "fort17": 0 }
-  ]
+  "lojaHeroica": {
+    "moedaEpic": 0,
+    "pedacoMoedaEpic": 0,
+    "nucleoVulcanus": 0,
+    "nucleoNemophi": 0,
+    "nucleoGrandiel": 0,
+    "simbTerraJulga": 0,
+    "peroPrecHeroi": 0
+  },
+  "fragmentos": {
+    "fragAnelHark": 0,
+    "fragBrincoHark": 0,
+    "fragVisuChase": 0,
+    "fragPortal": 0
+  },
+  "tickets": {
+    "tickDesafioEpic": 0,
+    "tickOutroMundo": 0,
+    "tickEvento": 0,
+    "tickRaid": 0
+  },
+  "pergaminho": {
+    "propGp": 0,
+    "propUnica": 0,
+    "altAtrib": 0,
+    "redAtrib": 0,
+    "fort16": 0,
+    "fort17": 0
+  }
 }

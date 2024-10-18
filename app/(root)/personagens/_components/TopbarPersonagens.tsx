@@ -10,7 +10,7 @@ const TopbarPersonagens = ({
   userId,
 }: TopbarPersonagensProps) => {
   return (
-    <div className="flex flex-row sticky top-0 h-12 shadow-sm w-full justify-end from-[#30336b] to-[#130f40] bg-gradient-to-br z-50">
+    <div className="flex flex-row sticky top-0 h-12 shadow-md w-full justify-end z-50">
       <ButtonAddPersonagem
         label="Adicionar personagem"
         personagensAdicionados={personagensAdicionados}

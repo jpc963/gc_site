@@ -19,11 +19,6 @@ export const SidebarLinks = [
     route: "/armazem",
     label: "Armazém",
   },
-  {
-    imgUrl: "/icons/package-open.svg",
-    route: "/personagensv",
-    label: "personagensv",
-  },
 ]
 
 export const PersonagensIcons = [

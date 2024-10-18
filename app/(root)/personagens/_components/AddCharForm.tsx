@@ -20,6 +20,7 @@ const AddCharForm = ({ userId, nomeChar, lista }: AddCharFormProps) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       nome: "",
+      totalAtk: 0,
       level: 1,
       gp: 0,
       userId,
@@ -42,9 +43,16 @@ const AddCharForm = ({ userId, nomeChar, lista }: AddCharFormProps) => {
   return (
     <Form {...form}>
       <form
-        className="space-y-8"
+        className="space-y-3"
         onSubmit={form.handleSubmit(adicionar)}
       >
+        <CustomInputChar
+          control={form.control}
+          name="totalAtk"
+          label="Ataque Total"
+          id={nomeChar + "atk"}
+        />
+
         <CustomInputChar
           control={form.control}
           name="level"
@@ -55,7 +63,7 @@ const AddCharForm = ({ userId, nomeChar, lista }: AddCharFormProps) => {
         <CustomInputChar
           control={form.control}
           name="gp"
-          label="gp"
+          label="GP"
           id={nomeChar + "GP"}
         />
 

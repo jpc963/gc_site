@@ -2,3 +2,29 @@ backgroud - #334258
 background mais escuro - #202b3c
 preto confortável - #232222
 azul claro - #6dc7cd
+
+#1c1c22
+#00ffff
+
+
+import { NextResponse, type NextRequest } from "next/server"
+
+export function middleware(req: NextRequest) {
+  try {
+    const url = req.nextUrl.clone()
+    url.pathname = "/"
+  
+    const response = NextResponse.next()
+  
+    if (response.cookies.has("appwrite-session")) {
+      return NextResponse.rewrite(url)
+    }  
+  } catch (error) {
+    console.log("[MIDDLEWARE]: ", error)
+  }
+  
+}
+
+export const config = {
+  matcher: ["/login", "/registro"],
+}

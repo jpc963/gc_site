@@ -1,28 +1,48 @@
-import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import EditCharForm from "./EditCharForm"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { Button } from "@/components/ui/button"
 
-const CardChar = () => {
+const CardChar = ({ img, personagem }: EditImgCharProps) => {
   return (
-    <div className="w-48 h-68 bg-[#130f40] rounded-md shadow-[1px 5px 60px 0px #100a886b]">
-      <div className="w-3/5 h-[3%] bg-[#6b64f3] m-auto rounded-b-md"></div>
+    <div className="w-48 h-68 bg-[#130f40] rounded-md shadow-md shadow-[#0f172a96] group hover:scale-105 transition-transform duration-150">
+      <div className="w-3/5 h-fit bg-[#6b64f3] m-auto rounded-b-md">
+        <span className="font-semibold text-center block">{img.nome}</span>
+      </div>
 
-      <div className="w-16 h-20 bg-[rgba(107,100,243,0.43)] rounded-md m-auto mt-6 relative shadow-md">
+      <div className="w-20 h-20 bg-[rgba(107,100,243,0.43)] rounded-md overflow-hidden m-auto mt-6 relative shadow-md shadow-[#0f172a96]">
         <Image
-          src="/icons/personagens/Ai_SD.webp"
-          alt="Ai personagem"
+          src={img.imgUrl}
+          alt={img.alt}
           fill
-          quality={100}
-          className="object-cover rounded-md"
+          quality={80}
+          className="object-cover"
         />
       </div>
 
-      <span className="font-semibold text-center block pt-3">Ai</span>
+      <p className="block text-center pt-3 text-sm">
+        Atk Total: {personagem.totalAtk}
+      </p>
+      <p className="block text-center pt-1 text-sm">
+        Level: {personagem.level}
+      </p>
+      <p className="block text-center pt-1 text-sm">GP: {personagem.gp}</p>
 
-      <p className="block text-center pt-1 text-sm">Job Title</p>
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 block m-auto my-6 rounded-sm border-none bg-[#6b64f3] hover:bg-[#534bf3] font-semibold">
+            Editar
+          </Button>
+        </PopoverTrigger>
 
-      <Button className="block m-auto mt-6 rounded-sm border-none bg-[#6b64f3] hover:bg-[#534bf3] font-semibold">
-        Editar
-      </Button>
+        <PopoverContent className="w-80 bg-[#130f40] text-white border-[#30336b] shadow-md shadow-[#0f172a96]">
+          <EditCharForm personagem={personagem} />
+        </PopoverContent>
+      </Popover>
     </div>
   )
 }

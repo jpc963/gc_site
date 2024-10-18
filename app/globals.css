@@ -16,8 +16,8 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
+    --background: 240 10% 12%;
+    --foreground: 210 20% 98%;
     --card: 0 0% 100%;
     --card-foreground: 224 71.4% 4.1%;
     --popover: 0 0% 100%;
@@ -44,7 +44,7 @@
   }
 
   .dark {
-    --background: 224 71.4% 4.1%;
+    --background: 240 10% 12%;
     --foreground: 210 20% 98%;
     --card: 224 71.4% 4.1%;
     --card-foreground: 210 20% 98%;
@@ -60,9 +60,9 @@
     --accent-foreground: 210 20% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 20% 98%;
-    --border: 215 27.9% 16.9%;
+    --border: 215, 27.9%, 16.9%;
     --input: 215 27.9% 16.9%;
-    --ring: 263.4 70% 50.4%;
+    --ring: 180 100% 50%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -79,71 +79,4 @@
   body {
     @apply bg-background text-foreground;
   }
-
-  .sidebar {
-    @apply sticky left-0 top-0 flex h-screen w-fit flex-col justify-between border-r shadow-sm border-gray-600 pt-8 text-white max-md:hidden sm:p-4 xl:p-6 2xl:w-[355px] bg-gradient-to-bl from-[#30336b] to-[#130f40];
-  }
-
-  .sidebar-link {
-    @apply flex gap-3 items-center py-1 md:p-3 2xl:p-4 rounded-lg justify-center xl:justify-start;
-  }
-
-  .card {
-    width: 190px;
-    height: 254px;
-    background: #130f40;
-    border-radius: 15px;
-    box-shadow: 1px 5px 60px 0px #100a886b;
-   }
-   
-   .card .card-border-top {
-    width: 60%;
-    height: 3%;
-    background: #6b64f3;
-    margin: auto;
-    border-radius: 0px 0px 15px 15px;
-   }
-   
-   .card span {
-    font-weight: 600;
-    color: white;
-    text-align: center;
-    display: block;
-    padding-top: 10px;
-    font-size: 16px;
-   }
-   
-   .card .job {
-    font-weight: 400;
-    color: white;
-    display: block;
-    text-align: center;
-    padding-top: 3px;
-    font-size: 12px;
-   }
-   
-   .card .img {
-    width: 70px;
-    height: 80px;
-    background: #6b64f3;
-    border-radius: 15px;
-    margin: auto;
-    margin-top: 25px;
-   }
-   
-   .card button {
-    padding: 8px 25px;
-    display: block;
-    margin: auto;
-    border-radius: 8px;
-    border: none;
-    margin-top: 30px;
-    background: #6b64f3;
-    color: white;
-    font-weight: 600;
-   }
-   
-   .card button:hover {
-    background: #534bf3;
-   }
 }

@@ -25,7 +25,7 @@ const Dungeons = ({ personagem, pList, setPList }: DungeonProps) => {
       {DungeonsIcons.map((dungeon) => {
         return (
           <div
-            className="w-10 h-8 text-center shadow-sm shadow-gray-900 flex justify-center items-center border-[#334258]"
+            className="w-10 h-8 text-center shadow-md shadow-[#0f172a96] flex justify-center items-center border-[#334258]"
             key={dungeon.nome}
           >
             <Image
@@ -39,7 +39,7 @@ const Dungeons = ({ personagem, pList, setPList }: DungeonProps) => {
               }
               width={28}
               height={28}
-              quality={100}
+              quality={80}
               alt={dungeon.alt}
               onClick={() => dungeonFeita(personagem, dungeon.nome)}
               className="p-2 cursor-pointer w-fit h-fit"

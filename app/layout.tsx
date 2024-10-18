@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${kanit.className} antialiased bg-gradient-to-bl from-[#30336b] to-[#130f40] text-white`}
+        className={`${kanit.className} antialiased w-full h-screen flex justify-center items-center`}
       >
         {children}
       </body>

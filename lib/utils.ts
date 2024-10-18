@@ -32,14 +32,19 @@ export const addPersonagemFormSchema = () =>
   z.object({
     userId: z.string(),
     nome: z.string(),
+    totalAtk: z.coerce
+      .number()
+      .min(0, "O ataque do personagem pode ser no mínimo 0")
+      .max(2000000, "O ataque do personagem pode ser no máximo 2.000.000")
+      .default(1),
     level: z.coerce
       .number()
-      .min(1, "O level do personagem pode ser no mínimo 1.")
-      .max(85, "O level do personagem pode ser no máximo 85.")
+      .min(1, "O level do personagem pode ser no mínimo 1")
+      .max(85, "O level do personagem pode ser no máximo 85")
       .default(1),
     gp: z.coerce
       .number()
-      .min(0, "O gp do personagem pode ser no mínimo 0.")
+      .min(0, "O gp do personagem pode ser no mínimo 0")
       .max(40000000, "O gp do personagem pode ser no máximo 40.000.000")
       .default(0),
   })
@@ -49,14 +54,19 @@ export const editPersonagemFormSchema = () =>
     userId: z.string(),
     $id: z.string(),
     nome: z.string(),
+    totalAtk: z.coerce
+      .number()
+      .min(0, "O level do personagem pode ser no mínimo 0")
+      .max(2000000, "O level do personagem pode ser no máximo 2.000.000")
+      .default(1),
     level: z.coerce
       .number()
-      .min(1, "O level do personagem pode ser no mínimo 1.")
-      .max(85, "O level do personagem pode ser no máximo 85.")
+      .min(1, "O level do personagem pode ser no mínimo 1")
+      .max(85, "O level do personagem pode ser no máximo 85")
       .default(1),
     gp: z.coerce
       .number()
-      .min(0, "O gp do personagem pode ser no mínimo 0.")
+      .min(0, "O gp do personagem pode ser no mínimo 0")
       .max(40000000, "O gp do personagem pode ser no máximo 40.000.000")
       .default(0),
   })

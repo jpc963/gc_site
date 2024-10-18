@@ -28,14 +28,14 @@ const Desafios = () => {
         {PersonagensIcons.map((personagem) => {
           return (
             <div
-              className="flex flex-col items-center px-8 py-2 text-center shadow-lg rounded-sm border border-[#30336b] bg-[#130f40]"
+              className="flex flex-col items-center px-8 py-2 text-center shadow-md shadow-[#0f172a96] rounded-sm border border-[#30336b] bg-[#130f40]"
               key={personagem.nome}
             >
               <Image
                 src={personagem.imgUrl}
                 width={141}
                 height={94}
-                quality={100}
+                quality={80}
                 alt={personagem.alt}
                 loading="lazy"
                 className="mt-2"

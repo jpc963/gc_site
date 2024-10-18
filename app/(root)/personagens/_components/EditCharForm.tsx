@@ -23,6 +23,7 @@ const EditCharForm = ({ personagem }: EditPersonagemProps) => {
       userId: personagem.userId,
       $id: personagem.$id,
       nome: personagem.nome,
+      totalAtk: personagem.totalAtk,
       level: personagem.level,
       gp: personagem.gp,
     },
@@ -52,6 +53,16 @@ const EditCharForm = ({ personagem }: EditPersonagemProps) => {
         </div>
 
         <div className="grid gap-2">
+          <div className="grid grid-cols-3 items-center gap-4">
+            <Label htmlFor="totalAtk">Ataque Total</Label>
+
+            <CustomInputEditChar
+              control={form.control}
+              name="totalAtk"
+              id={personagem.nome + "atk"}
+            />
+          </div>
+
           <div className="grid grid-cols-3 items-center gap-4">
             <Label htmlFor="level">Level</Label>
 

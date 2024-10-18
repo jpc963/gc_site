@@ -12,7 +12,7 @@ const Sidebar = () => {
   const pathname = usePathname()
 
   return (
-    <section className="sidebar">
+    <section className="sticky left-0 top-0 flex h-screen w-fit flex-col justify-between pt-8 max-md:hidden sm:p-4 xl:p-6 2xl:w-[355px] shadow-md">
       <nav className="flex flex-col gap-4">
         <div className="flex flex-col items-center">
           <Logo
@@ -31,8 +31,8 @@ const Sidebar = () => {
             <Link
               href={item.route}
               key={item.label}
-              className={cn("sidebar-link", {
-                "bg-gradient-to-r from-[#130f40]": isActive,
+              className={cn("flex gap-3 items-center py-1 md:p-3 2xl:p-4 justify-start ", {
+                "border-b border-separate border-[#00ffff]": isActive,
               })}
             >
               <div className="relative border-r border-separate pr-10 size-6">

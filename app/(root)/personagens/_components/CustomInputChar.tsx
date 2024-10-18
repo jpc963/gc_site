@@ -35,7 +35,7 @@ const CustomInputChar = ({
             <FormControl>
               <Input
               placeholder=""
-                className="text-[16px] placeholder:text-[16px] placeholder:text-gray-500"
+                className="text-[16px] placeholder:text-[16px] placeholder:text-gray-500 focus-visible:ring-0"
                 id={id}
                 {...field}
               />

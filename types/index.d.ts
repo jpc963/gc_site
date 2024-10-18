@@ -24,6 +24,7 @@ declare type User = {
 declare type Personagem = {
   userId: string
   nome: string
+  totalAtk: number
   level: number
   gp: number
 }
@@ -38,6 +39,7 @@ declare type EditPersonagem = {
   userId: string
   $id: string
   nome: string
+  totalAtk: number
   level: number
   gp: number
 }
