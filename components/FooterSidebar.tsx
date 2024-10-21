@@ -1,3 +1,5 @@
+'use client'
+
 import { logoutAccount } from "@/lib/actions/user.actions"
 import { LogOut } from "lucide-react"
 
@@ -6,7 +8,7 @@ const FooterSidebar = () => {
     <footer>
       <button
         onClick={() => logoutAccount()}
-        className="sidebar-link"
+        className="flex gap-3 items-center py-1 md:p-3 2xl:p-4 justify-start"
       >
         <div className="relative border-r border-separate">
           <LogOut className="size-6 ml-4 mr-2" />

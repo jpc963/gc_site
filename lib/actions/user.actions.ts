@@ -1,6 +1,6 @@
 "use server"
 
-import { ID, Query } from "node-appwrite"
+import { Databases, ID, Query } from "node-appwrite"
 import { createAdminClient, createSessionClient } from "../appwrite"
 import { cookies } from "next/headers"
 import { parseStringify } from "@/lib/utils"
@@ -9,6 +9,7 @@ const {
   APPWRITE_DATABASE_ID: DATABASE_ID,
   APPWRITE_USER_COLLECTION_ID: USER_COLLECTION_ID,
   APPWRITE_PERSONAGENSUSER_COLLECTION_ID: PERSONAGENSUSER_COLLECTION_ID,
+  APPWRITE_DESAFIOS_COLLECTION_ID: DESAFIOS_COLLECTION_ID,
 } = process.env
 
 export const signIn = async ({ email, password }: signInParams) => {
@@ -82,7 +83,7 @@ export async function getLoggedInUser() {
 
     //eslint-disable-next-line
   } catch (error) {
-    console.log("[GET_LOGGED_IN_USER]: ", 'NO SESSION')
+    console.log("[GET_LOGGED_IN_USER]: ", "NO SESSION")
     return null
   }
 }
@@ -161,12 +162,50 @@ export async function editPersonagensUser({ $id, ...data }: EditPersonagem) {
   }
 }
 
+export async function getDesafiosConcluidos(userId: string) {
+  try {
+    const { database } = await createAdminClient()
+
+    const dungeons = await database.listDocuments(
+      DATABASE_ID!,
+      DESAFIOS_COLLECTION_ID!,
+      [Query.equal("userId", [userId])]
+    )
+
+    console.log(dungeons)
+    return parseStringify(dungeons)
+  } catch (error) {
+    console.log("[GET_DUNGEONS_USER]: ", error)
+    return null
+  }
+}
+
+export async function addDesafiosConcluidos({ ...data }: DungeonFeitaUser) {
+  try {
+    const { database } = await createAdminClient()
+
+    const criar = await database.createDocument(
+      DATABASE_ID!,
+      DESAFIOS_COLLECTION_ID!,
+      ID.unique(),
+      { ...data }
+    )
+
+    if (!criar) throw new Error("Erro ao adicionar desafios concluídos")
+
+    return "OK"
+  } catch (error) {
+    console.log("[ADD_DUNGEONS_USER]: ", error)
+    return null
+  }
+}
+
 export const logoutAccount = async () => {
   try {
     const { account } = await createSessionClient()
 
     cookies().delete("appwrite-session")
-    
+
     await account.deleteSession("current")
   } catch (error) {
     console.log("[LOGOUT_ACCOUNT]: ", error)

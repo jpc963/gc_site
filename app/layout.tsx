@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${kanit.className} antialiased w-full h-screen flex justify-center items-center`}
+        className={`${kanit.className} antialiased w-full h-screen`}
       >
         {children}
       </body>

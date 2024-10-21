@@ -68,12 +68,9 @@ const ButtonAddPersonagem = ({
         <DialogDescription />
 
         <div
-          className={cn(
-            "flex flex-row items-center justify-evenly mb-4",
-            {
-              hidden: !selecionado,
-            }
-          )}
+          className={cn("flex flex-row items-center justify-evenly mb-4", {
+            hidden: !selecionado,
+          })}
         >
           <div>[IMAGEM COMPLETA DO PERSONAGEM]</div>
 
@@ -87,6 +84,7 @@ const ButtonAddPersonagem = ({
         </div>
 
         <Separator className="my-4" />
+
         <TooltipProvider delayDuration={300}>
           <div className="flex flex-row flex-wrap gap-2 justify-center mb-4">
             {listaNaoAdicionados.map((img) => (

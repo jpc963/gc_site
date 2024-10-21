@@ -1,57 +1,20 @@
-"use client"
+import {
+  getDesafiosConcluidos,
+  getLoggedInUser,
+  getUserInfo,
+} from "@/lib/actions/user.actions"
+import Dungeons from "./_components/Dungeons"
 
-import Dungeons from "@/app/(root)/desafios/_components/Dungeons"
-import Topbar from "@/app/(root)/desafios/_components/Topbar"
-import { Separator } from "@/components/ui/separator"
-import { PersonagensIcons } from "@/constants"
-import Image from "next/image"
-import { useState } from "react"
-
-type DungeonPersonagem = {
-  nome: string
-  dungeon: string
-}
-
-const Desafios = () => {
-  const [personagemDungeon, setPersonagemDungeon] = useState<
-    DungeonPersonagem[]
-  >([])
+const Desafios = async () => {
+  const loggedIn = await getLoggedInUser()
+  const { userId } = await getUserInfo(loggedIn)
+  const dungeons = await getDesafiosConcluidos(userId)
 
   return (
-    <section>
-      <Topbar
-        list={personagemDungeon}
-        set={setPersonagemDungeon}
+    <section className="h-screen overflow-y-auto">
+      <Dungeons
+        userId={userId}
       />
-
-      <div className="flex flex-row flex-wrap justify-center p-8 gap-4">
-        {PersonagensIcons.map((personagem) => {
-          return (
-            <div
-              className="flex flex-col items-center px-8 py-2 text-center shadow-md shadow-[#0f172a96] rounded-sm border border-[#30336b] bg-[#130f40]"
-              key={personagem.nome}
-            >
-              <Image
-                src={personagem.imgUrl}
-                width={141}
-                height={94}
-                quality={80}
-                alt={personagem.alt}
-                loading="lazy"
-                className="mt-2"
-              />
-
-              <Separator className="bg-[#30336b] my-4" />
-
-              <Dungeons
-                personagem={personagem.nome}
-                pList={personagemDungeon}
-                setPList={setPersonagemDungeon}
-              />
-            </div>
-          )
-        })}
-      </div>
     </section>
   )
 }

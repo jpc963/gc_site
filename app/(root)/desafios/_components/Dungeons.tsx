@@ -1,53 +1,39 @@
-import { DungeonsIcons } from "@/constants"
-import Image from "next/image"
+"use client"
 
-interface DungeonProps {
-  personagem: string
-  pList: { nome: string; dungeon: string }[]
-  setPList: (value: { nome: string; dungeon: string }[]) => void
-}
+import { Button } from "@/components/ui/button"
+import { DungeonNames } from "@/constants"
+import CharDungeon from "./CharDungeon"
+import { useState } from "react"
+import { cn } from "@/lib/utils"
 
-const Dungeons = ({ personagem, pList, setPList }: DungeonProps) => {
-  const dungeonFeita = (pNome: string, dNome: string) => {
-    if (
-      pList.find((value) => value.nome === pNome && value.dungeon === dNome)
-    ) {
-      setPList(
-        pList.filter((value) => value.nome !== pNome || value.dungeon !== dNome)
-      )
-    } else {
-      setPList([...pList, { nome: pNome, dungeon: dNome }])
-    }
-  }
+const Dungeons = ({ userId }: { userId: string }) => {
+  const dungeons = DungeonNames
+  const [name, setName] = useState<string>("")
 
   return (
-    <div className="grid justify-center grid-flow-row grid-cols-3 gap-4 my-2">
-      {DungeonsIcons.map((dungeon) => {
-        return (
-          <div
-            className="w-10 h-8 text-center shadow-md shadow-[#0f172a96] flex justify-center items-center border-[#334258]"
-            key={dungeon.nome}
+    <>
+      <div className="flex flex-row gap-2 w-full mt-2 justify-center">
+        {dungeons.map((dungeon) => (
+          <Button
+            className={cn("rounded-md p-6 shadow-md text-base", {
+              "bg-emerald-600 hover:bg-emerald-600":
+                name === dungeon.replaceAll("-", " "),
+            })}
+            key={dungeon}
+            onClick={() => setName(dungeon.replaceAll("-", " "))}
           >
-            <Image
-              src={
-                pList.find(
-                  (value) =>
-                    value.nome === personagem && value.dungeon === dungeon.nome
-                )
-                  ? "/icons/check.svg"
-                  : dungeon.imgUrl
-              }
-              width={28}
-              height={28}
-              quality={80}
-              alt={dungeon.alt}
-              onClick={() => dungeonFeita(personagem, dungeon.nome)}
-              className="p-2 cursor-pointer w-fit h-fit"
-            />
-          </div>
-        )
-      })}
-    </div>
+            {dungeon.replaceAll("-", " ")}
+          </Button>
+        ))}
+      </div>
+
+      {name && (
+        <CharDungeon
+          nome={name}
+          userId={userId}
+        />
+      )}
+    </>
   )
 }
 

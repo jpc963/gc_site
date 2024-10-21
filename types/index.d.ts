@@ -58,3 +58,12 @@ declare interface EditImgCharProps {
   personagem: EditPersonagem
   img: ImgChar
 }
+
+declare type DungeonFeita = {
+  nome: string
+  personagens: string[]
+}
+
+declare interface DungeonFeitaUser extends DungeonFeita {
+  userId: string
+}

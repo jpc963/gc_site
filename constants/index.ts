@@ -1,26 +1,3 @@
-export const SidebarLinks = [
-  {
-    imgUrl: "/icons/square-library.svg",
-    route: "/",
-    label: "Painel",
-  },
-  {
-    imgUrl: "/icons/users.svg",
-    route: "/personagens",
-    label: "Personagens",
-  },
-  {
-    imgUrl: "/icons/calendar-days.svg",
-    route: "/desafios",
-    label: "Desafios",
-  },
-  {
-    imgUrl: "/icons/package-open.svg",
-    route: "/armazem",
-    label: "Armazém",
-  },
-]
-
 export const PersonagensIcons = [
   {
     imgUrl: "/icons/personagens/Elesis_SD.webp",
@@ -206,4 +183,16 @@ export const DungeonsIcons = [
     alt: "Vazio Contaminação icon",
     nome: "Vazio Contaminação",
   },
+]
+
+export const DungeonNames = [
+  "Fornalha-infernal",
+  "Altar-da-Ruína",
+  "Torre-das-Ilusões",
+  "Covil-de-Berkas",
+  "Torre-da-Extinção",
+  "Terra-do-Julgamento",
+  "Vazio-Invasão",
+  "Vazio-Contaminação",
+  "Claustro-Infinito",
 ]

@@ -1,42 +1,35 @@
-"use client"
-
 import { Button } from "@/components/ui/button"
+import { PersonagensIcons } from "@/constants"
+import { addDesafiosConcluidos } from "@/lib/actions/user.actions"
+import { cn } from "@/lib/utils"
+import { useToast } from "@/hooks/use-toast"
 
-declare type List = {
-  nome: string
-  dungeon: string
+interface DungeonProps {
+  len: number
+  func: () => void
+  userId: string
+  infos: DungeonFeita
 }
 
-declare interface TopbarProps {
-  list: List[]
-  set: (value: List[]) => void
-}
+const Topbar = ({ len, func, userId, infos }: DungeonProps) => {
+  const dgUser = { userId, nome: infos.nome, personagens: infos.personagens }
 
-const Topbar = ({ list, set }: TopbarProps) => {
-  const saveList = () => {
-    console.log(list)
-  }
-
-  const resetList = () => {
-    set([])
+  const handleSave = () => {
+    addDesafiosConcluidos(dgUser)
   }
 
   return (
-    <div className="flex flex-row sticky top-0 h-12 shadow-sm shadow-[#0f172a96] w-full justify-end bg-[#30336b]">
+    <div className="flex flex-row gap-2 justify-center items-center fixed bottom-4 right-8">
       <Button
-        variant="ghost"
-        className="rounded-none h-full hover:bg-slate-400 text-white"
-        onClick={() => resetList()}
+        className={cn("bg-emerald-600 hover:bg-emerald-800", {
+          "bg-red-400 hover:bg-red-500": len === PersonagensIcons.length,
+        })}
+        onClick={() => func()}
       >
-        Reset
+        Selecionar todos
       </Button>
 
-      <Button
-        className="rounded-none h-full w-[200px] font-semibold"
-        onClick={() => saveList()}
-      >
-        Salvar
-      </Button>
+      <Button onClick={() => handleSave()}>Salvar</Button>
     </div>
   )
 }
