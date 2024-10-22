@@ -196,3 +196,27 @@ export const DungeonNames = [
   "Vazio-Contaminação",
   "Claustro-Infinito",
 ]
+
+export const Items = [
+  { nome: "Moeda Épica", qtd: 0 },
+  { nome: "Pdç Moeda Épica", qtd: 0 },
+  { nome: "Núcleo Vulcanus", qtd: 0 },
+  { nome: "Núcleo Nemophilla", qtd: 0 },
+  { nome: "Núcleo Grandiel", qtd: 0 },
+  { nome: "Simb. T. Julgamento", qtd: 0 },
+  { nome: "Pér. Prec. do Herói", qtd: 0 },
+  { nome: "Frag. Anel Harkyon", qtd: 0 },
+  { nome: "Frag. Brinco Harkyon", qtd: 0 },
+  { nome: "Frag. Visual Chase", qtd: 0 },
+  { nome: "Frag. Portal", qtd: 0 },
+  { nome: "Tck. Desafio Épico", qtd: 0 },
+  { nome: "Tck. Outro Mundo", qtd: 0 },
+  { nome: "Tck. Evento", qtd: 0 },
+  { nome: "Tck. Raid", qtd: 0 },
+  { nome: "Perg. Prop GP", qtd: 0 },
+  { nome: "Perg. Prop Única", qtd: 0 },
+  { nome: "Perg. Alt. Atrib.", qtd: 0 },
+  { nome: "Perg. Red. Atrib.", qtd: 0 },
+  { nome: "Perg. Fort. +16", qtd: 0 },
+  { nome: "Perg. Fort. +17", qtd: 0 },
+]

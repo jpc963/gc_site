@@ -3,15 +3,15 @@
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { authFormSchema } from "@/lib/utils"
-import CustomInput from "../../../components/CustomInput"
+import CustomInput from "@/components/CustomInput"
 import { useForm } from "react-hook-form"
 import React, { useState } from "react"
 import Link from "next/link"
-import { Form } from "../../../components/ui/form"
-import { Button } from "../../../components/ui/button"
+import { Form } from "@/components/ui/form"
+import { Button } from "@/components/ui/button"
 import { Loader2 } from "lucide-react"
 import { signIn, signUp } from "@/lib/actions/user.actions"
-import Logo from "../../../components/Logo"
+import Logo from "@/components/Logo"
 
 const AuthForm = ({ type }: { type: string }) => {
   const [user, setUser] = useState(null)

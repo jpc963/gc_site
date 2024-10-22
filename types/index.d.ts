@@ -81,3 +81,8 @@ declare type EditDungeonsParams = {
   nome: string
   personagens: string[]
 }
+
+declare type QtdItemType = {
+  nome: string
+  qtd: number
+}
