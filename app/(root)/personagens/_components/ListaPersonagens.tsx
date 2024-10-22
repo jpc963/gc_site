@@ -5,7 +5,9 @@ import {
   getUserInfo,
 } from "@/lib/actions/user.actions"
 import TopbarPersonagens from "./TopbarPersonagens"
-import CardChar from "./CardChar"
+import dynamic from "next/dynamic"
+
+const CardCharComponent = dynamic(() => import("./CardChar"))
 
 const ListaPersonagens = async () => {
   const loggedIn = await getLoggedInUser()
@@ -41,7 +43,7 @@ const ListaPersonagens = async () => {
       {documents?.length > 0 && (
         <div className="flex flex-row flex-wrap w-full gap-4 p-6 justify-center">
           {listaImgs.map((img, index) => (
-            <CardChar
+            <CardCharComponent
               key={index}
               img={img}
               personagem={listaAdicionados[index]}

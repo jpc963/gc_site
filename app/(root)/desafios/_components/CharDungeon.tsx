@@ -5,13 +5,10 @@ import { CircleCheck } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import Topbar from "./Topbar"
+import { getDesafiosConcluidos } from "@/lib/actions/user.actions"
 
-type CharDungeonProps = {
-  nome: string
-  userId: string
-}
-
-const CharDungeon = ({ nome, userId }: CharDungeonProps) => {
+const CharDungeon = ({ nome, userId }: { nome: string; userId: string }) => {
+  const [doc, setDoc] = useState<DocDungeonsType>([])
   const [dungeonFeita, setDungeonFeita] = useState<DungeonFeita>({
     nome: nome,
     personagens: [],
@@ -48,11 +45,21 @@ const CharDungeon = ({ nome, userId }: CharDungeonProps) => {
   }
 
   useEffect(() => {
-    setDungeonFeita({
-      nome: nome,
-      personagens: [],
-    })
-  }, [nome])
+    const getDungeons = async () => {
+      const { documents }: { documents: DocDungeonsType } =
+        await getDesafiosConcluidos(userId)
+
+      setDungeonFeita({
+        nome: nome,
+        personagens:
+          documents.find((dungeon) => dungeon.nome === nome)?.personagens || [],
+      })
+
+      setDoc(documents)
+    }
+
+    getDungeons()
+  }, [nome, userId])
 
   return (
     <div className="flex flex-col items-center mt-6">
@@ -104,6 +111,7 @@ const CharDungeon = ({ nome, userId }: CharDungeonProps) => {
         func={handleSelectAll}
         userId={userId}
         infos={dungeonFeita}
+        doc={doc.find((item) => item.nome === nome) ?? null}
       />
     </div>
   )

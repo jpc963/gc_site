@@ -67,3 +67,17 @@ declare type DungeonFeita = {
 declare interface DungeonFeitaUser extends DungeonFeita {
   userId: string
 }
+
+declare type DocDungeonsType = {
+  $id: string
+  userId: string
+  nome: string
+  personagens: string[]
+}[]
+
+declare type EditDungeonsParams = {
+  $id: string
+  userId: string
+  nome: string
+  personagens: string[]
+}

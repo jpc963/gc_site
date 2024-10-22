@@ -1,6 +1,6 @@
 "use server"
 
-import { Databases, ID, Query } from "node-appwrite"
+import { ID, Query } from "node-appwrite"
 import { createAdminClient, createSessionClient } from "../appwrite"
 import { cookies } from "next/headers"
 import { parseStringify } from "@/lib/utils"
@@ -75,7 +75,9 @@ export const signUp = async ({ password, ...userData }: signUpParams) => {
 export async function getLoggedInUser() {
   try {
     const { account } = await createSessionClient()
-    const result = await account.get()
+    const result = (await account.get()) || null
+
+    if (!result) return null
 
     const user = await getUserInfo({ userId: result.$id })
 
@@ -88,8 +90,10 @@ export async function getLoggedInUser() {
   }
 }
 
-export async function getUserInfo({ userId }: { userId: string }) {
+export async function getUserInfo({ userId }: { userId: string | null }) {
   try {
+    if (!userId) return null
+
     const { database } = await createAdminClient()
 
     const user = await database.listDocuments(
@@ -172,7 +176,6 @@ export async function getDesafiosConcluidos(userId: string) {
       [Query.equal("userId", [userId])]
     )
 
-    console.log(dungeons)
     return parseStringify(dungeons)
   } catch (error) {
     console.log("[GET_DUNGEONS_USER]: ", error)
@@ -196,6 +199,29 @@ export async function addDesafiosConcluidos({ ...data }: DungeonFeitaUser) {
     return "OK"
   } catch (error) {
     console.log("[ADD_DUNGEONS_USER]: ", error)
+    return null
+  }
+}
+
+export async function editDesafiosConcluidos({
+  $id,
+  ...data
+}: EditDungeonsParams) {
+  try {
+    const { database } = await createAdminClient()
+
+    const editar = await database.updateDocument(
+      DATABASE_ID!,
+      DESAFIOS_COLLECTION_ID!,
+      $id,
+      { ...data }
+    )
+
+    if (!editar) throw new Error("Erro ao editar desafios")
+
+    return "OK"
+  } catch (error) {
+    console.log("[EDIT_DUNGEONS_USER]: ", error)
     return null
   }
 }

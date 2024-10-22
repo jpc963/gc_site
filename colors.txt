@@ -1,11 +1,6 @@
-backgroud - #334258
-background mais escuro - #202b3c
-preto confortável - #232222
-azul claro - #6dc7cd
-
-#1c1c22
-#00ffff
-
+backgroud - #1c1c22
+verdin - #00ffff
+roxo - #7c3aed
 
 import { NextResponse, type NextRequest } from "next/server"
 

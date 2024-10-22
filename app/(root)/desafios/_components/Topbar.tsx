@@ -1,21 +1,41 @@
 import { Button } from "@/components/ui/button"
 import { PersonagensIcons } from "@/constants"
-import { addDesafiosConcluidos } from "@/lib/actions/user.actions"
+import {
+  addDesafiosConcluidos,
+  editDesafiosConcluidos,
+} from "@/lib/actions/user.actions"
 import { cn } from "@/lib/utils"
-import { useToast } from "@/hooks/use-toast"
+import { Loader2 } from "lucide-react"
+import { useState } from "react"
 
 interface DungeonProps {
   len: number
   func: () => void
   userId: string
   infos: DungeonFeita
+  doc: EditDungeonsParams | null
 }
 
-const Topbar = ({ len, func, userId, infos }: DungeonProps) => {
+const Topbar = ({ len, func, userId, infos, doc }: DungeonProps) => {
   const dgUser = { userId, nome: infos.nome, personagens: infos.personagens }
+  const [isLoading, setIsLoading] = useState(false)
 
-  const handleSave = () => {
-    addDesafiosConcluidos(dgUser)
+  const handleSave = async () => {
+    setIsLoading(true)
+
+    if (doc?.nome === infos.nome) {
+      const data = {
+        $id: doc.$id,
+        userId: doc.userId,
+        nome: infos.nome,
+        personagens: infos.personagens,
+      }
+      await editDesafiosConcluidos(data)
+      setIsLoading(false)
+    } else {
+      await addDesafiosConcluidos(dgUser)
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -29,7 +49,19 @@ const Topbar = ({ len, func, userId, infos }: DungeonProps) => {
         Selecionar todos
       </Button>
 
-      <Button onClick={() => handleSave()}>Salvar</Button>
+      <Button
+        onClick={() => handleSave()}
+        disabled={isLoading}
+      >
+        {isLoading ? (
+          <Loader2
+            size={20}
+            className="animate-spin"
+          />
+        ) : (
+          "Salvar"
+        )}
+      </Button>
     </div>
   )
 }

@@ -2,9 +2,11 @@
 
 import { Button } from "@/components/ui/button"
 import { DungeonNames } from "@/constants"
-import CharDungeon from "./CharDungeon"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
+import dynamic from "next/dynamic"
+
+const CharDungeonComponent = dynamic(() => import("./CharDungeon"))
 
 const Dungeons = ({ userId }: { userId: string }) => {
   const dungeons = DungeonNames
@@ -12,7 +14,7 @@ const Dungeons = ({ userId }: { userId: string }) => {
 
   return (
     <>
-      <div className="flex flex-row gap-2 w-full mt-2 justify-center">
+      <div className="flex flex-row gap-2 w-full mt-2">
         {dungeons.map((dungeon) => (
           <Button
             className={cn("rounded-md p-6 shadow-md text-base", {
@@ -28,7 +30,7 @@ const Dungeons = ({ userId }: { userId: string }) => {
       </div>
 
       {name && (
-        <CharDungeon
+        <CharDungeonComponent
           nome={name}
           userId={userId}
         />
