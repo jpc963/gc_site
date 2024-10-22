@@ -83,6 +83,18 @@ declare type EditDungeonsParams = {
 }
 
 declare type QtdItemType = {
-  nome: string
+  abrev: string
   qtd: number
+}
+
+declare type ArmazemUserType = {
+  $id: string
+  userId: string
+  items: QtdItemType[]
+}
+
+declare type EditArmazemParams = {
+  $id: string
+  userId: string
+  items: QtdItemType[]
 }

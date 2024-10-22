@@ -1,8 +1,4 @@
-import {
-  // getDesafiosConcluidos,
-  getLoggedInUser,
-  getUserInfo,
-} from "@/lib/actions/user.actions"
+import { getLoggedInUser, getUserInfo } from "@/lib/actions/user.actions"
 import Dungeons from "./_components/Dungeons"
 
 const Desafios = async () => {

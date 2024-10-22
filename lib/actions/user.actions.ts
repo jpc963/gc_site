@@ -10,6 +10,7 @@ const {
   APPWRITE_USER_COLLECTION_ID: USER_COLLECTION_ID,
   APPWRITE_PERSONAGENSUSER_COLLECTION_ID: PERSONAGENSUSER_COLLECTION_ID,
   APPWRITE_DESAFIOS_COLLECTION_ID: DESAFIOS_COLLECTION_ID,
+  APPWRITE_ARMAZEM_COLLECTION_ID: ARMAZEM_COLLECTION_ID,
 } = process.env
 
 export const signIn = async ({ email, password }: signInParams) => {
@@ -26,7 +27,7 @@ export const signIn = async ({ email, password }: signInParams) => {
 
     const user = await getUserInfo({ userId: session.userId })
 
-    return await parseStringify(user)
+    return parseStringify(user)
   } catch (error) {
     console.log("[SIGN_IN]: ", error)
     return null
@@ -81,7 +82,7 @@ export async function getLoggedInUser() {
 
     const user = await getUserInfo({ userId: result.$id })
 
-    return await parseStringify(user)
+    return parseStringify(user)
 
     //eslint-disable-next-line
   } catch (error) {
@@ -102,7 +103,7 @@ export async function getUserInfo({ userId }: { userId: string | null }) {
       [Query.equal("userId", [userId])]
     )
 
-    return await parseStringify(user.documents[0])
+    return parseStringify(user.documents[0])
   } catch (error) {
     console.log("[GET_USER_INFO]: ", error)
     return null
@@ -222,6 +223,71 @@ export async function editDesafiosConcluidos({
     return "OK"
   } catch (error) {
     console.log("[EDIT_DUNGEONS_USER]: ", error)
+    return null
+  }
+}
+
+export async function getArmazemUser({ userId }: { userId: string }) {
+  try {
+    if (!userId) return null
+
+    const { database } = await createAdminClient()
+
+    const armazem = await database.listDocuments(
+      DATABASE_ID!,
+      ARMAZEM_COLLECTION_ID!,
+      [Query.equal("userId", [userId])]
+    )
+
+    console.log(armazem)
+
+    if (armazem.documents.length === 0) {
+      return null
+    } else {
+      return parseStringify(armazem.documents[0])
+    }
+  } catch (error) {
+    console.log("[GET_ARMAZEM_INFO]: ", error)
+    return null
+  }
+}
+
+export async function addArmazemUser({ $id, ...data }: ArmazemUserType) {
+  try {
+    const { database } = await createAdminClient()
+
+    const criar = await database.createDocument(
+      DATABASE_ID!,
+      ARMAZEM_COLLECTION_ID!,
+      ID.unique(),
+      { ...data }
+    )
+
+    if (!criar) throw new Error(`Erro ao adicionar itens no armazém: ${$id}`)
+
+    return "OK"
+  } catch (error) {
+    console.log("[ADD_ARMAZEM_USER]: ", error)
+    return null
+  }
+}
+
+export async function editArmazemUser({ $id, ...data }: EditArmazemParams) {
+  try {
+    const { database } = await createAdminClient()
+
+    const editar = await database.updateDocument(
+      DATABASE_ID!,
+      DESAFIOS_COLLECTION_ID!,
+      $id,
+      { ...data }
+    )
+
+    if (!editar) throw new Error("Erro ao editar desafios")
+
+    return "OK"
+  } catch (error) {
+    console.log("[EDIT_ARMAZEM_USER]: ", error)
     return null
   }
 }

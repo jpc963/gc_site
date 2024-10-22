@@ -4,11 +4,11 @@ import { useState } from "react"
 
 type ButtonsProps = {
   userItem: QtdItemType[]
-  item: { nome: string; qtd: number }
+  item: QtdItemType
 }
 
 const Buttons = ({ userItem, item }: ButtonsProps) => {
-  const index = userItem.findIndex((i) => i.nome === item.nome)
+  const index = userItem.findIndex((i) => i.abrev === item.abrev)
   const [value, setValue] = useState<number>(0)
 
   const handleMinus = () => {

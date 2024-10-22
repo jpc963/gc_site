@@ -9,7 +9,7 @@ const Logo = ({ w, h }: LogoProps) => {
   return (
     <>
       <Image
-        src="/icons/logo-grandchase.png"
+        src="/icons/Grand_Chase_logo.webp"
         width={w}
         height={h}
         quality={100}
