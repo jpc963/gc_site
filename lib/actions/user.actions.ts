@@ -252,7 +252,7 @@ export async function getArmazemUser({ userId }: { userId: string }) {
   }
 }
 
-export async function addArmazemUser({ $id, ...data }: ArmazemUserType) {
+export async function addArmazemUser({ $id, ...data }: ArmazemUserProps) {
   try {
     const { database } = await createAdminClient()
 
@@ -272,7 +272,7 @@ export async function addArmazemUser({ $id, ...data }: ArmazemUserType) {
   }
 }
 
-export async function editArmazemUser({ $id, ...data }: EditArmazemParams) {
+export async function editArmazemUser({ $id, ...data }: ArmazemUserType) {
   try {
     const { database } = await createAdminClient()
 

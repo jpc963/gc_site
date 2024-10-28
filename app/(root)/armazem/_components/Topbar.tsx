@@ -4,7 +4,7 @@ import { Loader2 } from "lucide-react"
 import { useState } from "react"
 
 type TopbarProps = {
-  items: ArmazemUserType
+  items: ArmazemUserProps
   exists: boolean
 }
 

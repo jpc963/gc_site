@@ -8,15 +8,15 @@ import { getArmazemUser } from "@/lib/actions/user.actions"
 
 const Card = ({ userId }: { userId: string }) => {
   const [exists, setExists] = useState<boolean>(true)
-  const [userItems, setUserItems] = useState<ArmazemUserType>({
+  const [userItems, setUserItems] = useState<ArmazemUserProps>({
     $id: "",
-    userId: "",
-    items: Items,
+    userId,
+    items: Items.map((item) => ({ abrev: item.abrev, qtd: item.qtd })),
   })
 
   useEffect(() => {
     const infos = async () => {
-      const { documents }: { documents: ArmazemUserType } =
+      const { documents }: { documents: ArmazemUserProps } =
         (await getArmazemUser({ userId })) || {}
 
       if (documents) {

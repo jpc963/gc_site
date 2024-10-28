@@ -87,14 +87,20 @@ declare type QtdItemType = {
   qtd: number
 }
 
+declare type ArmazemUserProps = {
+  $id: string
+  userId: string
+  items: {
+    abrev: string
+    qtd: number
+  }[]
+}
+
 declare type ArmazemUserType = {
   $id: string
   userId: string
-  items: QtdItemType[]
-}
-
-declare type EditArmazemParams = {
-  $id: string
-  userId: string
-  items: QtdItemType[]
+  items: {
+    abrev: string
+    qtd: string
+  }[]
 }
