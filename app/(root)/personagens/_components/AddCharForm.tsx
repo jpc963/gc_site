@@ -8,7 +8,7 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import CustomInputChar from "./CustomInputChar"
-import { addPersonagensUser } from "@/lib/actions/user.actions"
+import { addPersonagensUser } from "@/lib/actions/char.actions"
 import { useState } from "react"
 
 const AddCharForm = ({ userId, nomeChar, lista }: AddCharFormProps) => {

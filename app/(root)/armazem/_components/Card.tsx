@@ -4,7 +4,7 @@ import { Items, ItemsNames } from "@/constants"
 import Buttons from "./Buttons"
 import Topbar from "./Topbar"
 import { useEffect, useState } from "react"
-import { getArmazemUser } from "@/lib/actions/user.actions"
+import { getArmazemUser } from "@/lib/actions/armazem.actions"
 
 const Card = ({ userId }: { userId: string }) => {
   const [exists, setExists] = useState<boolean>(true)

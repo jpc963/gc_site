@@ -5,7 +5,7 @@ import { CircleCheck } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import Topbar from "./Topbar"
-import { getDesafiosConcluidos } from "@/lib/actions/user.actions"
+import { getDesafiosConcluidos } from "@/lib/actions/desafios.actions"
 
 const CharDungeon = ({ nome, userId }: { nome: string; userId: string }) => {
   const [doc, setDoc] = useState<DocDungeonsType>([])

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { addArmazemUser, editArmazemUser } from "@/lib/actions/user.actions"
+import { addArmazemUser, editArmazemUser } from "@/lib/actions/armazem.actions"
 import { Loader2 } from "lucide-react"
 import { useState } from "react"
 

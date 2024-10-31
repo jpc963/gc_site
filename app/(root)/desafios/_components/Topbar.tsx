@@ -3,7 +3,7 @@ import { PersonagensIcons } from "@/constants"
 import {
   addDesafiosConcluidos,
   editDesafiosConcluidos,
-} from "@/lib/actions/user.actions"
+} from "@/lib/actions/desafios.actions"
 import { cn } from "@/lib/utils"
 import { Loader2 } from "lucide-react"
 import { useState } from "react"
