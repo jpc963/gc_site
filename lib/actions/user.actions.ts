@@ -25,7 +25,7 @@ export const signIn = async ({ email, password }: signInParams) => {
       secure: true,
     })
 
-    const user = await getUserInfo({ userId: session.userId })
+    const user = await getUserInfo(session.userId)
 
     return parseStringify(user)
   } catch (error) {
@@ -80,7 +80,7 @@ export async function getLoggedInUser() {
 
     if (!result) return null
 
-    const user = await getUserInfo({ userId: result.$id })
+    const user = await getUserInfo(result.$id)
 
     return parseStringify(user)
 
@@ -91,7 +91,7 @@ export async function getLoggedInUser() {
   }
 }
 
-export async function getUserInfo({ userId }: { userId: string | null }) {
+export async function getUserInfo(userId: string) {
   try {
     if (!userId) return null
 
@@ -100,7 +100,7 @@ export async function getUserInfo({ userId }: { userId: string | null }) {
     const user = await database.listDocuments(
       DATABASE_ID!,
       USER_COLLECTION_ID!,
-      [Query.equal("userId", [userId])]
+      [Query.equal("userId", userId)]
     )
 
     return parseStringify(user.documents[0])
@@ -239,12 +239,19 @@ export async function getArmazemUser({ userId }: { userId: string }) {
       [Query.equal("userId", [userId])]
     )
 
-    console.log(armazem)
+    const items = JSON.parse(armazem.documents[0].items)
+    const userInfos: ArmazemUserProps = {
+      $id: armazem.documents[0].$id,
+      userId: armazem.documents[0].userId,
+      items,
+    }
+
+    console.log(userInfos)
 
     if (armazem.documents.length === 0) {
       return null
     } else {
-      return parseStringify(armazem.documents[0])
+      return userInfos
     }
   } catch (error) {
     console.log("[GET_ARMAZEM_INFO]: ", error)
@@ -252,15 +259,26 @@ export async function getArmazemUser({ userId }: { userId: string }) {
   }
 }
 
-export async function addArmazemUser({ $id, ...data }: ArmazemUserProps) {
+export async function addArmazemUser({
+  $id,
+  items,
+  ...data
+}: ArmazemUserProps) {
   try {
     const { database } = await createAdminClient()
+
+    const itens = items.map((item) => ({
+      abrev: item.abrev,
+      qtd: item.qtd,
+    }))
+
+    console.log(itens)
 
     const criar = await database.createDocument(
       DATABASE_ID!,
       ARMAZEM_COLLECTION_ID!,
       ID.unique(),
-      { ...data }
+      { ...data, items: [JSON.stringify(itens)] }
     )
 
     if (!criar) throw new Error(`Erro ao adicionar itens no armazém: ${$id}`)
@@ -272,14 +290,14 @@ export async function addArmazemUser({ $id, ...data }: ArmazemUserProps) {
   }
 }
 
-export async function editArmazemUser({ $id, ...data }: ArmazemUserType) {
+export async function editArmazemUser({ $id, ...data }: ArmazemUserProps) {
   try {
     const { database } = await createAdminClient()
 
     const editar = await database.updateDocument(
       DATABASE_ID!,
       DESAFIOS_COLLECTION_ID!,
-      $id,
+      $id!,
       { ...data }
     )
 

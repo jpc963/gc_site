@@ -16,8 +16,9 @@ const Card = ({ userId }: { userId: string }) => {
 
   useEffect(() => {
     const infos = async () => {
-      const { documents }: { documents: ArmazemUserProps } =
-        (await getArmazemUser({ userId })) || {}
+      const documents: ArmazemUserProps | null = await getArmazemUser({
+        userId,
+      })
 
       if (documents) {
         setUserItems(documents)

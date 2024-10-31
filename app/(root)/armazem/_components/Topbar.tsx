@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { addArmazemUser } from "@/lib/actions/user.actions"
+import { addArmazemUser, editArmazemUser } from "@/lib/actions/user.actions"
 import { Loader2 } from "lucide-react"
 import { useState } from "react"
 
@@ -17,6 +17,7 @@ const Topbar = ({ items, exists }: TopbarProps) => {
     if (!exists) {
       await addArmazemUser(items)
     } else {
+      await editArmazemUser(items)
     }
 
     console.log(items)

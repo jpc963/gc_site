@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input"
 import { Minus, Plus } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 type ButtonsProps = {
   userItem: QtdItemType[]
@@ -9,7 +9,7 @@ type ButtonsProps = {
 
 const Buttons = ({ userItem, item }: ButtonsProps) => {
   const index = userItem.findIndex((i) => i.abrev === item.abrev)
-  const [value, setValue] = useState<number>(0)
+  const [value, setValue] = useState<number>(item.qtd)
 
   const handleMinus = () => {
     if (value > 0) {
@@ -32,6 +32,10 @@ const Buttons = ({ userItem, item }: ButtonsProps) => {
       userItem[index].qtd = value
     }
   }
+
+  useEffect(() => {
+    setValue(item.qtd)
+  }, [item])
 
   return (
     <div
