@@ -22,7 +22,7 @@ export const signIn = async ({ email, password }: signInParams) => {
       secure: true,
     })
 
-    const user = await getUserInfo(session.userId)
+    const user = await getUserInfo({ userId: session.userId })
 
     return parseStringify(user)
   } catch (error) {
@@ -77,7 +77,7 @@ export async function getLoggedInUser() {
 
     if (!result) return null
 
-    const user = await getUserInfo(result.$id)
+    const user = await getUserInfo({ userId: result.$id })
 
     return parseStringify(user)
 
@@ -88,7 +88,7 @@ export async function getLoggedInUser() {
   }
 }
 
-export async function getUserInfo(userId: string) {
+export async function getUserInfo({ userId }: { userId: string }) {
   try {
     if (!userId) return null
 

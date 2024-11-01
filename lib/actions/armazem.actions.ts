@@ -1,9 +1,10 @@
+"use server"
+
 import { ID, Query } from "node-appwrite"
 import { createAdminClient } from "../appwrite"
 
 const {
   APPWRITE_DATABASE_ID: DATABASE_ID,
-  APPWRITE_DESAFIOS_COLLECTION_ID: DESAFIOS_COLLECTION_ID,
   APPWRITE_ARMAZEM_COLLECTION_ID: ARMAZEM_COLLECTION_ID,
 } = process.env
 
@@ -25,8 +26,6 @@ export async function getArmazemUser({ userId }: { userId: string }) {
       userId: armazem.documents[0].userId,
       items,
     }
-
-    console.log(userInfos)
 
     if (armazem.documents.length === 0) {
       return null
@@ -52,8 +51,6 @@ export async function addArmazemUser({
       qtd: item.qtd,
     }))
 
-    console.log(itens)
-
     const criar = await database.createDocument(
       DATABASE_ID!,
       ARMAZEM_COLLECTION_ID!,
@@ -70,15 +67,24 @@ export async function addArmazemUser({
   }
 }
 
-export async function editArmazemUser({ $id, ...data }: ArmazemUserProps) {
+export async function editArmazemUser({
+  $id,
+  items,
+  ...data
+}: ArmazemUserProps) {
   try {
     const { database } = await createAdminClient()
 
+    const itens = items.map((item) => ({
+      abrev: item.abrev,
+      qtd: item.qtd,
+    }))
+
     const editar = await database.updateDocument(
       DATABASE_ID!,
-      DESAFIOS_COLLECTION_ID!,
+      ARMAZEM_COLLECTION_ID!,
       $id!,
-      { ...data }
+      { ...data, items: [JSON.stringify(itens)] }
     )
 
     if (!editar) throw new Error("Erro ao editar desafios")

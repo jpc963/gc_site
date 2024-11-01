@@ -28,6 +28,10 @@ const Buttons = ({ userItem, item }: ButtonsProps) => {
   }
 
   const handleLeave = () => {
+    if (value > 30000) {
+      setValue(30000)
+    }
+
     if (value !== userItem[index].qtd) {
       userItem[index].qtd = value
     }
@@ -52,8 +56,10 @@ const Buttons = ({ userItem, item }: ButtonsProps) => {
         type="number"
         name="qtd"
         min={0}
+        max={30000}
         value={value}
         onChange={handleInput}
+        onBlur={handleLeave}
         className="w-16 border-0 text-center text-white"
       />
 

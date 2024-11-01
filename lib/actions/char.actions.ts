@@ -1,3 +1,5 @@
+"use server"
+
 import { ID, Query } from "node-appwrite"
 import { createAdminClient } from "../appwrite"
 import { parseStringify } from "@/lib/utils"
@@ -61,5 +63,27 @@ export async function editPersonagensUser({ $id, ...data }: EditPersonagem) {
   } catch (error) {
     console.log("[EDIT_PERSONAGENS_USER]: ", error)
     return null
+  }
+}
+
+export const getHigherChar = async ({ userId }: { userId: string }) => {
+  try {
+    const { database } = await createAdminClient()
+
+    const personagens = await database.listDocuments(
+      DATABASE_ID!,
+      PERSONAGENSUSER_COLLECTION_ID!,
+      [
+        Query.equal("userId", [userId]),
+        Query.orderDesc("totalAtk"),
+        Query.limit(1),
+      ]
+    )
+    console.log(personagens)
+
+    return parseStringify(personagens)
+  } catch (error) {
+    console.log("[GET_PERSONAGENS_USER]: ", error)
+    return []
   }
 }

@@ -1,8 +1,5 @@
 import { PersonagensIcons } from "@/constants"
-import {
-  getLoggedInUser,
-  getUserInfo,
-} from "@/lib/actions/user.actions"
+import { getLoggedInUser, getUserInfo } from "@/lib/actions/user.actions"
 import { getPersonagensUser } from "@/lib/actions/char.actions"
 import TopbarPersonagens from "./TopbarPersonagens"
 import dynamic from "next/dynamic"

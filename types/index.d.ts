@@ -92,26 +92,3 @@ declare type ArmazemUserProps = {
   userId: string
   items: QtdItemType[]
 }
-declare type Item = {
-  moedaEpic: number
-  pedacoMoedaEpic: number
-  nucleoVulcanus: number
-  nucleoNemophi: number
-  nucleoGrandiel: number
-  simbTerraJulga: number
-  peroPrecHeroi: number
-  fragAnelHark: number
-  fragBrincoHark: number
-  fragVisuChase: number
-  fragPortal: number
-  tickDesafioEpic: number
-  tickOutroMundo: number
-  tickEvento: number
-  tickRaid: number
-  propGp: number
-  propUnica: number
-  altAtrib: number
-  redAtrib: number
-  fort16: number
-  fort17: number
-}

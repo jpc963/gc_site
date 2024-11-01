@@ -7,7 +7,6 @@ export default function AuthLayout({
   children: React.ReactNode
 }>) {
   const loggedIn = cookies().get("appwrite-session") || null
-
   if (loggedIn) redirect("/")
 
   return (
