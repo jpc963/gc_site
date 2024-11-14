@@ -1,10 +1,9 @@
-import { getLoggedInUser, getUserInfo } from "@/lib/actions/user.actions"
+import { cookies } from "next/headers"
 import Card from "./_components/Card"
 
 const Armazem = async () => {
-  const loggedIn = await getLoggedInUser()
-  const { userId } = await getUserInfo(loggedIn)
-  
+  const userId = (await cookies().get("user-session")?.value) || ""
+
   return (
     <section className="w-full h-full">
       <Card userId={userId} />

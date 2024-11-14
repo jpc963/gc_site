@@ -46,13 +46,12 @@ const CharDungeon = ({ nome, userId }: { nome: string; userId: string }) => {
 
   useEffect(() => {
     const getDungeons = async () => {
-      const { documents }: { documents: DocDungeonsType } =
-        await getDesafiosConcluidos(userId)
+      const documents = (await getDesafiosConcluidos(userId)) as DocDungeonsType
 
       setDungeonFeita({
         nome: nome,
         personagens:
-          documents.find((dungeon) => dungeon.nome === nome)?.personagens || [],
+          documents.find((item) => item.nome === nome)?.personagens ?? [],
       })
 
       setDoc(documents)

@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/popover"
 import { Button } from "@/components/ui/button"
 
-const CardChar = ({ img, personagem }: EditImgCharProps) => {
+const CardChar = ({ userId, img, personagem, listaPersonagens }: EditImgCharProps) => {
   return (
     <div className="w-48 h-68 bg-[#1c1c29] rounded-md shadow-md group hover:scale-105 transition-transform duration-150">
       <div className="w-3/5 h-fit bg-[#7c3aed] m-auto rounded-b-md">
@@ -40,7 +40,7 @@ const CardChar = ({ img, personagem }: EditImgCharProps) => {
         </PopoverTrigger>
 
         <PopoverContent className="w-80 bg-[#1c1c29] border-[#1c1c33] border shadow-md text-white">
-          <EditCharForm personagem={personagem} />
+          <EditCharForm userId={userId} personagem={personagem} personagens={listaPersonagens}  />
         </PopoverContent>
       </Popover>
     </div>

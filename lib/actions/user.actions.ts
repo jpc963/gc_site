@@ -1,28 +1,33 @@
 "use server"
 
-import { ID, Query } from "node-appwrite"
-import { createAdminClient, createSessionClient } from "../appwrite"
 import { cookies } from "next/headers"
 import { parseStringify } from "@/lib/utils"
-
-const {
-  APPWRITE_DATABASE_ID: DATABASE_ID,
-  APPWRITE_USER_COLLECTION_ID: USER_COLLECTION_ID,
-} = process.env
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth"
+import { auth, db } from "../firebase"
+import { doc, getDoc, setDoc } from "firebase/firestore"
+import { Items } from "@/constants"
 
 export const signIn = async ({ email, password }: signInParams) => {
+  let user
+
   try {
-    const { account } = await createAdminClient()
-    const session = await account.createEmailPasswordSession(email, password)
+    await signInWithEmailAndPassword(auth, email, password).then(
+      async (res) => {
+        await getDoc(doc(db, "usuario", res.user.uid)).then((snapshot) =>
+          snapshot.exists() ? (user = { ...snapshot.data() }) : null
+        )
 
-    cookies().set("appwrite-session", session.secret, {
-      path: "/",
-      httpOnly: true,
-      sameSite: "strict",
-      secure: true,
-    })
-
-    const user = await getUserInfo({ userId: session.userId })
+        cookies().set("user-session", res.user.uid, {
+          path: "/",
+          httpOnly: true,
+          sameSite: "strict",
+          secure: true,
+        })
+      }
+    )
 
     return parseStringify(user)
   } catch (error) {
@@ -32,39 +37,37 @@ export const signIn = async ({ email, password }: signInParams) => {
 }
 
 export const signUp = async ({ password, ...userData }: signUpParams) => {
-  const { email, username } = userData
-
-  let newUserAccount
+  const { email } = userData
 
   try {
-    const { account, database } = await createAdminClient()
+    await createUserWithEmailAndPassword(auth, email, password).then(
+      async (res) => {
+        await setDoc(doc(db, "usuario", res.user.uid), {
+          ...userData,
+          userId: res.user.uid,
+          cLevel: 0,
+          personagens: [],
+          premium: false,
+          pontosDiarios: 0,
+          vp: 0,
+        }).then(
+          async () =>
+            await setDoc(doc(db, "armazem", res.user.uid), {
+              userId: res.user.uid,
+              items: Items,
+            })
+        )
 
-    newUserAccount = await account.create(
-      ID.unique(),
-      email,
-      password,
-      username
+        cookies().set("user-session", res.user.uid, {
+          path: "/",
+          httpOnly: true,
+          sameSite: "strict",
+          secure: true,
+        })
+      }
     )
 
-    if (!newUserAccount) throw new Error("Erro ao criar uma nova conta")
-
-    const newUser = await database.createDocument(
-      DATABASE_ID!,
-      USER_COLLECTION_ID!,
-      ID.unique(),
-      { ...userData, userId: newUserAccount.$id }
-    )
-
-    const session = await account.createEmailPasswordSession(email, password)
-
-    cookies().set("appwrite-session", session.secret, {
-      path: "/",
-      httpOnly: true,
-      sameSite: "strict",
-      secure: true,
-    })
-
-    return parseStringify(newUser)
+    return parseStringify(userData)
   } catch (error) {
     console.log("[SIGN_UP]: ", error)
   }
@@ -72,48 +75,27 @@ export const signUp = async ({ password, ...userData }: signUpParams) => {
 
 export async function getLoggedInUser() {
   try {
-    const { account } = await createSessionClient()
-    const result = (await account.get()) || null
+    const hasCookies = cookies().get("user-session")?.value
 
-    if (!result) return null
+    if (!hasCookies) return null
 
-    const user = await getUserInfo({ userId: result.$id })
-
-    return parseStringify(user)
-
-    //eslint-disable-next-line
-  } catch (error) {
-    console.log("[GET_LOGGED_IN_USER]: ", "NO SESSION")
-    return null
-  }
-}
-
-export async function getUserInfo({ userId }: { userId: string }) {
-  try {
-    if (!userId) return null
-
-    const { database } = await createAdminClient()
-
-    const user = await database.listDocuments(
-      DATABASE_ID!,
-      USER_COLLECTION_ID!,
-      [Query.equal("userId", userId)]
+    const user = await getDoc(doc(db, "usuario", hasCookies)).then((snapshot) =>
+      snapshot.exists() ? snapshot.data() : null
     )
 
-    return parseStringify(user.documents[0])
+    return parseStringify(user)
+    //eslint-disable-next-line
   } catch (error) {
-    console.log("[GET_USER_INFO]: ", error)
+    console.log("[GET_LOGGED_IN_USER]: ", error)
     return null
   }
 }
 
 export const logoutAccount = async () => {
   try {
-    const { account } = await createSessionClient()
+    await auth.signOut().then(() => cookies().delete("user-session"))
 
-    cookies().delete("appwrite-session")
-
-    await account.deleteSession("current")
+    return true
   } catch (error) {
     console.log("[LOGOUT_ACCOUNT]: ", error)
     return null

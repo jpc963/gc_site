@@ -1,26 +1,20 @@
 import { Button } from "@/components/ui/button"
-import { addArmazemUser, editArmazemUser } from "@/lib/actions/armazem.actions"
+import { editArmazemUser } from "@/lib/actions/armazem.actions"
 import { Loader2 } from "lucide-react"
 import { useState } from "react"
 
 type TopbarProps = {
   items: ArmazemUserProps
-  exists: boolean
 }
 
-const Topbar = ({ items, exists }: TopbarProps) => {
+const Topbar = ({ items }: TopbarProps) => {
   const [isLoading, setIsLoading] = useState(false)
 
   const handleSave = async () => {
     setIsLoading(true)
 
-    if (!exists) {
-      await addArmazemUser(items)
-    } else {
-      await editArmazemUser(items)
-    }
+    await editArmazemUser(items)
 
-    console.log(items)
     setIsLoading(false)
   }
 

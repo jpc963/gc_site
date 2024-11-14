@@ -12,7 +12,11 @@ import CustomInputEditChar from "./CustomInputEditChar"
 import { Button } from "@/components/ui/button"
 import { Loader2 } from "lucide-react"
 
-const EditCharForm = ({ personagem }: EditPersonagemProps) => {
+const EditCharForm = ({
+  userId,
+  personagem,
+  personagens,
+}: EditCharFormProps) => {
   const [isLoading, setIsLoading] = useState(false)
 
   const formSchema = editPersonagemFormSchema()
@@ -20,8 +24,6 @@ const EditCharForm = ({ personagem }: EditPersonagemProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      userId: personagem.userId,
-      $id: personagem.$id,
       nome: personagem.nome,
       totalAtk: personagem.totalAtk,
       level: personagem.level,
@@ -32,7 +34,23 @@ const EditCharForm = ({ personagem }: EditPersonagemProps) => {
   const editar = async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true)
 
-    await editPersonagensUser({ ...data })
+    const personagensAtualizados = personagens.map((p) => {
+      if (p.nome === personagem.nome) {
+        return {
+          nome: data.nome,
+          totalAtk: data.totalAtk,
+          level: data.level,
+          gp: data.gp,
+        }
+      }
+
+      return p
+    })
+
+    await editPersonagensUser({
+      userId,
+      personagens: personagensAtualizados,
+    })
 
     setIsLoading(false)
     window.location.reload()
@@ -40,10 +58,7 @@ const EditCharForm = ({ personagem }: EditPersonagemProps) => {
 
   return (
     <Form {...form}>
-      <form
-        className="grid gap-4"
-        onSubmit={form.handleSubmit(editar)}
-      >
+      <form className="grid gap-4">
         <div className="space-y-2">
           <h4 className="font-medium leading-none">{personagem.nome}</h4>
 
@@ -89,6 +104,7 @@ const EditCharForm = ({ personagem }: EditPersonagemProps) => {
             type="submit"
             className="text-[16px] font-semibold text-white"
             disabled={isLoading}
+            onClick={() => editar(form.getValues())}
           >
             {isLoading ? (
               <>

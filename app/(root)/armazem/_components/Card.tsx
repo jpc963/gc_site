@@ -7,11 +7,10 @@ import { useEffect, useState } from "react"
 import { getArmazemUser } from "@/lib/actions/armazem.actions"
 
 const Card = ({ userId }: { userId: string }) => {
-  const [exists, setExists] = useState<boolean>(true)
   const [userItems, setUserItems] = useState<ArmazemUserProps>({
     $id: "",
     userId,
-    items: Items.map((item) => ({ abrev: item.abrev, qtd: item.qtd })),
+    items: Items,
   })
 
   useEffect(() => {
@@ -22,8 +21,6 @@ const Card = ({ userId }: { userId: string }) => {
 
       if (documents) {
         setUserItems(documents)
-      } else {
-        setExists(false)
       }
     }
 
@@ -32,10 +29,7 @@ const Card = ({ userId }: { userId: string }) => {
 
   return (
     <>
-      <Topbar
-        items={userItems}
-        exists={exists}
-      />
+      <Topbar items={userItems} />
 
       <div className="flex flex-col items-center mt-6">
         <div className="flex flex-row flex-wrap justify-center gap-4 p-4">

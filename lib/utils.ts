@@ -30,7 +30,6 @@ export const authFormSchema = (type: string) =>
 
 export const addPersonagemFormSchema = () =>
   z.object({
-    userId: z.string(),
     nome: z.string(),
     totalAtk: z.coerce
       .number()
@@ -52,7 +51,6 @@ export const addPersonagemFormSchema = () =>
 export const editPersonagemFormSchema = () =>
   z.object({
     userId: z.string(),
-    $id: z.string(),
     nome: z.string(),
     totalAtk: z.coerce
       .number()

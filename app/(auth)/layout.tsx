@@ -1,12 +1,12 @@
-import { cookies } from "next/headers"
+import { getLoggedInUser } from "@/lib/actions/user.actions"
 import { redirect } from "next/navigation"
 
-export default function AuthLayout({
+export default async function AuthLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const loggedIn = cookies().get("appwrite-session") || null
+  const loggedIn = await getLoggedInUser()
   if (loggedIn) redirect("/")
 
   return (

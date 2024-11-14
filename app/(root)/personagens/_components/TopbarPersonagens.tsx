@@ -2,7 +2,7 @@ import ButtonAddPersonagem from "./ButtonAddPersonagem"
 
 declare type TopbarPersonagensProps = {
   userId: string
-  personagensAdicionados: { nome: string; level: number }[]
+  personagensAdicionados: Personagem[]
 }
 
 const TopbarPersonagens = ({

@@ -35,4 +35,5 @@ const CustomInputEditChar = ({ control, name, id }: CustomInputPropsChar) => {
     />
   )
 }
+
 export default CustomInputEditChar

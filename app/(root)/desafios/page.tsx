@@ -1,9 +1,8 @@
-import { getLoggedInUser, getUserInfo } from "@/lib/actions/user.actions"
 import Dungeons from "./_components/Dungeons"
+import { cookies } from "next/headers"
 
 const Desafios = async () => {
-  const loggedIn = await getLoggedInUser()
-  const { userId } = await getUserInfo(loggedIn)
+  const userId  = await cookies().get("user-session")?.value || ""
 
   return (
     <section className="h-screen overflow-y-auto">

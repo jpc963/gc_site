@@ -22,11 +22,15 @@ declare type User = {
 }
 
 declare type Personagem = {
-  userId: string
   nome: string
   totalAtk: number
   level: number
   gp: number
+}
+
+declare type PersonagemUser = {
+  userId: string
+  personagens: Personagem[]
 }
 
 declare type ImgChar = {
@@ -36,8 +40,6 @@ declare type ImgChar = {
 }
 
 declare type EditPersonagem = {
-  userId: string
-  $id: string
   nome: string
   totalAtk: number
   level: number
@@ -48,6 +50,13 @@ declare interface AddCharFormProps {
   userId: string
   nomeChar: string
   lista: ImgChar[]
+  personagens: Personagem[]
+}
+
+declare interface EditCharFormProps {
+  userId: string
+  personagem: Personagem
+  personagens: Personagem[]
 }
 
 declare interface EditPersonagemProps {
@@ -55,8 +64,10 @@ declare interface EditPersonagemProps {
 }
 
 declare interface EditImgCharProps {
+  userId: string
   personagem: EditPersonagem
   img: ImgChar
+  listaPersonagens: Personagem[]
 }
 
 declare type DungeonFeita = {

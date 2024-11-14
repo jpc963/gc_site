@@ -1,23 +1,18 @@
 "use server"
 
-import { ID, Query } from "node-appwrite"
-import { createAdminClient } from "../appwrite"
 import { parseStringify } from "@/lib/utils"
+import { doc, getDoc, setDoc } from "firebase/firestore"
+import { db } from "../firebase"
 
-const {
-  APPWRITE_DATABASE_ID: DATABASE_ID,
-  APPWRITE_PERSONAGENSUSER_COLLECTION_ID: PERSONAGENSUSER_COLLECTION_ID,
-} = process.env
-
-export async function getPersonagensUser({ userId }: { userId: string }) {
+export async function getPersonagensUser(userId: string) {
   try {
-    const { database } = await createAdminClient()
+    const personagens = await getDoc(doc(db, "personagens", userId)).then(
+      (doc) => ({ ...doc.data() })
+    ) as PersonagemUser
 
-    const personagens = await database.listDocuments(
-      DATABASE_ID!,
-      PERSONAGENSUSER_COLLECTION_ID!,
-      [Query.equal("userId", [userId])]
-    )
+    if (!personagens) {
+      return null
+    }
 
     return parseStringify(personagens)
   } catch (error) {
@@ -26,18 +21,11 @@ export async function getPersonagensUser({ userId }: { userId: string }) {
   }
 }
 
-export async function addPersonagensUser({ ...data }: Personagem) {
+export async function addPersonagensUser({ ...data }: PersonagemUser) {
   try {
-    const { database } = await createAdminClient()
-
-    const criar = await database.createDocument(
-      DATABASE_ID!,
-      PERSONAGENSUSER_COLLECTION_ID!,
-      ID.unique(),
-      { ...data }
-    )
-
-    if (!criar) throw new Error("Erro ao adicionar personagem")
+    await setDoc(doc(db, "personagens", data.userId), {
+      personagens: data.personagens,
+    })
 
     return "OK"
   } catch (error) {
@@ -46,44 +34,15 @@ export async function addPersonagensUser({ ...data }: Personagem) {
   }
 }
 
-export async function editPersonagensUser({ $id, ...data }: EditPersonagem) {
+export async function editPersonagensUser({ ...data }: PersonagemUser) {
   try {
-    const { database } = await createAdminClient()
-
-    const editar = await database.updateDocument(
-      DATABASE_ID!,
-      PERSONAGENSUSER_COLLECTION_ID!,
-      $id,
-      { ...data }
-    )
-
-    if (!editar) throw new Error("Erro ao editar personagem")
+    await setDoc(doc(db, "personagens", data.userId), {
+      personagens: data.personagens,
+    })	
 
     return "OK"
   } catch (error) {
-    console.log("[EDIT_PERSONAGENS_USER]: ", error)
+    console.log("[ADD_PERSONAGENS_USER]: ", error)
     return null
-  }
-}
-
-export const getHigherChar = async ({ userId }: { userId: string }) => {
-  try {
-    const { database } = await createAdminClient()
-
-    const personagens = await database.listDocuments(
-      DATABASE_ID!,
-      PERSONAGENSUSER_COLLECTION_ID!,
-      [
-        Query.equal("userId", [userId]),
-        Query.orderDesc("totalAtk"),
-        Query.limit(1),
-      ]
-    )
-    console.log(personagens)
-
-    return parseStringify(personagens)
-  } catch (error) {
-    console.log("[GET_PERSONAGENS_USER]: ", error)
-    return []
   }
 }

@@ -24,7 +24,7 @@ import { Separator } from "@/components/ui/separator"
 declare type ButtonAddPersonagemProps = {
   label: string
   userId: string
-  personagensAdicionados: { nome: string; level: number }[]
+  personagensAdicionados: Personagem[]
   className?: string
 }
 
@@ -79,6 +79,7 @@ const ButtonAddPersonagem = ({
               nomeChar={nomeChar}
               userId={userId}
               lista={listaNaoAdicionados}
+              personagens={personagensAdicionados}
             />
           </div>
         </div>

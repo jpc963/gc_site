@@ -1,23 +1,26 @@
-'use server'
+"use server"
 
-import { ID, Query } from "node-appwrite"
-import { createAdminClient } from "../appwrite"
 import { parseStringify } from "@/lib/utils"
-
-const {
-  APPWRITE_DATABASE_ID: DATABASE_ID,
-  APPWRITE_DESAFIOS_COLLECTION_ID: DESAFIOS_COLLECTION_ID,
-} = process.env
+import { db } from "../firebase"
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore"
 
 export async function getDesafiosConcluidos(userId: string) {
   try {
-    const { database } = await createAdminClient()
-
-    const dungeons = await database.listDocuments(
-      DATABASE_ID!,
-      DESAFIOS_COLLECTION_ID!,
-      [Query.equal("userId", [userId])]
-    )
+    const dungeons = await getDocs(
+      query(collection(db, "desafios"), where("userId", "==", userId))
+    ).then((snapshot) =>
+      snapshot.docs.map((doc) => ({
+        $id: doc.id,
+        ...doc.data(),
+      }))
+    ) as DungeonFeitaUser[]
 
     return parseStringify(dungeons)
   } catch (error) {
@@ -28,16 +31,7 @@ export async function getDesafiosConcluidos(userId: string) {
 
 export async function addDesafiosConcluidos({ ...data }: DungeonFeitaUser) {
   try {
-    const { database } = await createAdminClient()
-
-    const criar = await database.createDocument(
-      DATABASE_ID!,
-      DESAFIOS_COLLECTION_ID!,
-      ID.unique(),
-      { ...data }
-    )
-
-    if (!criar) throw new Error("Erro ao adicionar desafios concluídos")
+    await setDoc(doc(collection(db, "desafios")), { ...data })
 
     return "OK"
   } catch (error) {
@@ -51,16 +45,7 @@ export async function editDesafiosConcluidos({
   ...data
 }: EditDungeonsParams) {
   try {
-    const { database } = await createAdminClient()
-
-    const editar = await database.updateDocument(
-      DATABASE_ID!,
-      DESAFIOS_COLLECTION_ID!,
-      $id,
-      { ...data }
-    )
-
-    if (!editar) throw new Error("Erro ao editar desafios")
+    await setDoc(doc(db, "desafios", $id), { ...data })
 
     return "OK"
   } catch (error) {

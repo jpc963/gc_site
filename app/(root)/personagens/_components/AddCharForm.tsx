@@ -11,7 +11,7 @@ import CustomInputChar from "./CustomInputChar"
 import { addPersonagensUser } from "@/lib/actions/char.actions"
 import { useState } from "react"
 
-const AddCharForm = ({ userId, nomeChar, lista }: AddCharFormProps) => {
+const AddCharForm = ({ userId, nomeChar, lista, personagens}: AddCharFormProps) => {
   const [isLoading, setIsLoading] = useState(false)
 
   const formSchema = addPersonagemFormSchema()
@@ -23,7 +23,6 @@ const AddCharForm = ({ userId, nomeChar, lista }: AddCharFormProps) => {
       totalAtk: 0,
       level: 1,
       gp: 0,
-      userId,
     },
   })
 
@@ -31,7 +30,7 @@ const AddCharForm = ({ userId, nomeChar, lista }: AddCharFormProps) => {
     setIsLoading(true)
     data.nome = nomeChar
 
-    await addPersonagensUser({ ...data }).then(() => {
+    await addPersonagensUser({ userId, personagens: [...personagens, data] }).then(() => {
       lista.filter((char) => char.nome !== nomeChar)
     })
 
