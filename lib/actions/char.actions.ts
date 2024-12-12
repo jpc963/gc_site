@@ -1,7 +1,7 @@
 "use server"
 
 import { parseStringify } from "@/lib/utils"
-import { doc, getDoc, setDoc } from "firebase/firestore"
+import { doc, getDoc, getDocs, setDoc, query, collection, orderBy, where } from "firebase/firestore"
 import { db } from "../firebase"
 
 export async function getPersonagensUser(userId: string) {
@@ -41,6 +41,27 @@ export async function editPersonagensUser({ ...data }: PersonagemUser) {
     })	
 
     return "OK"
+  } catch (error) {
+    console.log("[ADD_PERSONAGENS_USER]: ", error)
+    return null
+  }
+}
+
+export async function getHighChar(userId: string) {
+  try {
+    // ordernar pelo campo totalAtk no array personagens
+    const highChar = await getDocs(
+      query(collection(db, "personagens"), where("userId", "==", userId))
+    ).then((snapshot) =>
+      snapshot.docs.map((doc) => ({
+        $id: doc.id,
+        ...doc.data(),
+      }))
+    ) as PersonagemUser
+
+    console.log(highChar)
+
+    return highChar
   } catch (error) {
     console.log("[ADD_PERSONAGENS_USER]: ", error)
     return null
