@@ -1,5 +1,10 @@
 import { addPersonagemFormSchema } from "@/lib/utils"
-import { FormControl, FormField, FormLabel, FormMessage } from "@/components/ui/form"
+import {
+  FormControl,
+  FormField,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Control, FieldPath } from "react-hook-form"
 import { z } from "zod"
@@ -13,6 +18,7 @@ interface CustomInputPropsChar {
   label: string
   placeholder?: string
   id: string
+  type?: string
 }
 
 const CustomInputChar = ({
@@ -20,6 +26,7 @@ const CustomInputChar = ({
   name,
   label,
   id,
+  type,
 }: CustomInputPropsChar) => {
   return (
     <FormField
@@ -34,9 +41,9 @@ const CustomInputChar = ({
           <div className="flex w-full flex-col">
             <FormControl>
               <Input
-              placeholder=""
                 className="text-[16px] placeholder:text-[16px] placeholder:text-gray-500 focus-visible:ring-0"
                 id={id}
+                type={type ? type : "text"}
                 {...field}
               />
             </FormControl>

@@ -25,14 +25,12 @@ declare type ButtonAddPersonagemProps = {
   label: string
   userId: string
   personagensAdicionados: Personagem[]
-  className?: string
 }
 
 const ButtonAddPersonagem = ({
   label,
   personagensAdicionados,
   userId,
-  className,
 }: ButtonAddPersonagemProps) => {
   const listaNaoAdicionados = PersonagensIcons.filter(
     (char) => !personagensAdicionados.find((p) => p.nome === char.nome)
@@ -57,7 +55,9 @@ const ButtonAddPersonagem = ({
   return (
     <Dialog onOpenChange={() => close()}>
       <DialogTrigger asChild>
-        <Button className={className}>{label}</Button>
+        <Button className="rounded-none h-full w-[200px] font-semibold">
+          {label}
+        </Button>
       </DialogTrigger>
 
       <DialogContent className="bg-[rgb(28,28,45)] border-none min-w-full p-4 2xl:p-2 2xl:min-w-[1200px]">
@@ -97,6 +97,7 @@ const ButtonAddPersonagem = ({
                       alt={img.alt}
                       quality={80}
                       fill
+                      sizes="100%"
                       className="cursor-pointer object-cover"
                       onClick={() => openInputs(img.nome)}
                     />

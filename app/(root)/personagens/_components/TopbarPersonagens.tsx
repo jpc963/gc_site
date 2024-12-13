@@ -1,4 +1,4 @@
-import ButtonAddPersonagem from "./ButtonAddPersonagem"
+import ButtonAddPersonagem from "./add/ButtonAddPersonagem"
 
 declare type TopbarPersonagensProps = {
   userId: string
@@ -15,7 +15,6 @@ const TopbarPersonagens = ({
         label="Adicionar personagem"
         personagensAdicionados={personagensAdicionados}
         userId={userId}
-        className="rounded-none h-full w-[200px] font-semibold"
       />
     </div>
   )

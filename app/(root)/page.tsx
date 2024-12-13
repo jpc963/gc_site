@@ -19,6 +19,18 @@ export default async function Home() {
   return (
     <section>
       <h1>Home</h1>
+
+      {highChar ? (
+        <div>
+          <h2>Seu melhor personagem é:</h2>
+          <p>Nome: {highChar.nome}</p>
+          <p>Level: {highChar.level}</p>
+          <p>GP: {highChar.gp}</p>
+          <p>Total de Ataque: {highChar.totalAtk}</p>
+        </div>
+      ) : (
+        <p>Você não possui personagens cadastrados</p>
+      )}
     </section>
   )
 }

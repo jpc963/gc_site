@@ -1,14 +1,14 @@
 "use server"
 
 import { parseStringify } from "@/lib/utils"
-import { doc, getDoc, getDocs, setDoc, query, collection, orderBy, where } from "firebase/firestore"
+import { doc, getDoc, setDoc } from "firebase/firestore"
 import { db } from "../firebase"
 
 export async function getPersonagensUser(userId: string) {
   try {
-    const personagens = await getDoc(doc(db, "personagens", userId)).then(
+    const personagens = (await getDoc(doc(db, "personagens", userId)).then(
       (doc) => ({ ...doc.data() })
-    ) as PersonagemUser
+    )) as PersonagemUser
 
     if (!personagens) {
       return null
@@ -38,7 +38,7 @@ export async function editPersonagensUser({ ...data }: PersonagemUser) {
   try {
     await setDoc(doc(db, "personagens", data.userId), {
       personagens: data.personagens,
-    })	
+    })
 
     return "OK"
   } catch (error) {
@@ -50,14 +50,16 @@ export async function editPersonagensUser({ ...data }: PersonagemUser) {
 export async function getHighChar(userId: string) {
   try {
     // ordernar pelo campo totalAtk no array personagens
-    const highChar = await getDocs(
-      query(collection(db, "personagens"), where("userId", "==", userId))
-    ).then((snapshot) =>
-      snapshot.docs.map((doc) => ({
-        $id: doc.id,
-        ...doc.data(),
-      }))
-    ) as PersonagemUser
+    const highChar = (await getDoc(doc(db, "personagens", userId)).then(
+      (doc) => {
+        const personagens = doc.data()?.personagens as Personagem[]
+        const highChar = personagens.reduce((acc, curr) =>
+          acc.totalAtk > curr.totalAtk ? acc : curr
+        )
+
+        return highChar
+      }
+    )) as Personagem
 
     console.log(highChar)
 

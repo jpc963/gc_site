@@ -35,7 +35,7 @@ export const addPersonagemFormSchema = () =>
       .number()
       .min(0, "O ataque do personagem pode ser no mínimo 0")
       .max(2000000, "O ataque do personagem pode ser no máximo 2.000.000")
-      .default(1),
+      .default(0),
     level: z.coerce
       .number()
       .min(1, "O level do personagem pode ser no mínimo 1")
@@ -54,9 +54,9 @@ export const editPersonagemFormSchema = () =>
     nome: z.string(),
     totalAtk: z.coerce
       .number()
-      .min(0, "O level do personagem pode ser no mínimo 0")
-      .max(2000000, "O level do personagem pode ser no máximo 2.000.000")
-      .default(1),
+      .min(0, "O ataque do personagem pode ser no mínimo 0")
+      .max(2000000, "O ataque do personagem pode ser no máximo 2.000.000")
+      .default(0),
     level: z.coerce
       .number()
       .min(1, "O level do personagem pode ser no mínimo 1")
