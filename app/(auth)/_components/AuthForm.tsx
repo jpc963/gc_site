@@ -1,17 +1,18 @@
 "use client"
 
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { authFormSchema } from "@/lib/utils"
-import CustomInput from "@/components/CustomInput"
-import { useForm } from "react-hook-form"
-import React, { useState } from "react"
-import Link from "next/link"
-import { Form } from "@/components/ui/form"
-import { Button } from "@/components/ui/button"
 import { Loader2 } from "lucide-react"
-import { signIn, signUp } from "@/lib/actions/user.actions"
+import Link from "next/link"
+import React, { useState } from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+
+import CustomInput from "@/components/CustomInput"
 import Logo from "@/components/Logo"
+import { Button } from "@/components/ui/button"
+import { Form } from "@/components/ui/form"
+import { signIn, signUp } from "@/lib/actions/user.actions"
+import { authFormSchema } from "@/lib/utils"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 const AuthForm = ({ type }: { type: string }) => {
   const [user, setUser] = useState(null)
@@ -22,9 +23,9 @@ const AuthForm = ({ type }: { type: string }) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "inoshy",
-      email: "joao@gmail.com",
-      password: "testeteste",
+      username: "",
+      email: "",
+      password: "",
     },
   })
 
