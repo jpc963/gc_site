@@ -1,6 +1,8 @@
-import { PersonagensIcons } from "@/constants"
-import TopbarPersonagens from "./TopbarPersonagens"
 import dynamic from "next/dynamic"
+
+import { PersonagensIcons } from "@/constants"
+
+import TopbarPersonagens from "./TopbarPersonagens"
 
 const CardCharComponent = dynamic(() => import("./CardChar"))
 
@@ -11,9 +13,12 @@ const ListaPersonagens = async ({
   userId: string
   documents: PersonagemUser
 }) => {
-  const listaAdicionados = documents.personagens
-    .map((p) => p)
-    .sort((a, b) => a.nome.localeCompare(b.nome))
+  const listaAdicionados =
+    documents.personagens?.length > 0
+      ? documents.personagens
+          .map((p) => p)
+          .sort((a, b) => a.nome.localeCompare(b.nome))
+      : []
 
   const listaImgs = PersonagensIcons.filter((img) =>
     listaAdicionados.find((p) => p.nome === img.nome)

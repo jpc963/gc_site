@@ -1,7 +1,9 @@
 "use server"
 
-import { parseStringify } from "@/lib/utils"
 import { doc, getDoc, setDoc } from "firebase/firestore"
+
+import { parseStringify } from "@/lib/utils"
+
 import { db } from "../firebase"
 
 export async function getPersonagensUser(userId: string) {
@@ -10,8 +12,8 @@ export async function getPersonagensUser(userId: string) {
       (doc) => ({ ...doc.data() })
     )) as PersonagemUser
 
-    if (!personagens) {
-      return null
+    if (!personagens.personagens) {
+      return []
     }
 
     return parseStringify(personagens)
