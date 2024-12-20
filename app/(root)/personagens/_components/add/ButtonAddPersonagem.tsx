@@ -1,25 +1,27 @@
 "use client"
 
 import Image from "next/image"
+import { useState } from "react"
+
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogTitle,
   DialogTrigger,
-  DialogDescription,
 } from "@/components/ui/dialog"
-import { PersonagensIcons } from "@/constants"
+import { Separator } from "@/components/ui/separator"
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { useState } from "react"
-import AddCharForm from "./AddCharForm"
+import { PersonagensIcons } from "@/constants"
 import { cn } from "@/lib/utils"
-import { Separator } from "@/components/ui/separator"
+
+import AddCharForm from "./AddCharForm"
 
 declare type ButtonAddPersonagemProps = {
   label: string
@@ -35,21 +37,18 @@ const ButtonAddPersonagem = ({
   const listaNaoAdicionados = PersonagensIcons.filter(
     (char) => !personagensAdicionados.find((p) => p.nome === char.nome)
   )
-  const [nomeChar, setNomeChar] = useState("")
 
-  const [selecionado, setSelecionado] = useState(false)
+  const [selecionado, setSelecionado] = useState({ imgUrl: "", alt: "" })
 
   const openInputs = (nome: string) => {
-    if (!selecionado) {
-      setSelecionado(true)
-    }
-
-    setNomeChar(nome)
+    setSelecionado({
+      imgUrl: `/icons/personagens/${nome}_00.png`,
+      alt: nome,
+    })
   }
 
   const close = () => {
-    setSelecionado(false)
-    setNomeChar("")
+    setSelecionado({ imgUrl: "", alt: "" })
   }
 
   return (
@@ -60,23 +59,34 @@ const ButtonAddPersonagem = ({
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="bg-[rgb(28,28,45)] border-none min-w-full p-4 2xl:p-2 2xl:min-w-[1200px]">
+      <DialogContent className="bg-[rgb(28,28,45)] border-none min-w-full p-4 2xl:p-2 lg:min-w-[1000px]">
         <DialogTitle className="text-center font-semibold text-2xl">
-          {nomeChar ? nomeChar : "Selecione o personagem"}
+          {selecionado.alt ? selecionado.alt : "Selecione o personagem"}
         </DialogTitle>
 
         <DialogDescription />
 
         <div
           className={cn("flex flex-row items-center justify-evenly mb-4", {
-            hidden: !selecionado,
+            hidden: !selecionado.imgUrl,
           })}
         >
-          <div>[IMAGEM COMPLETA DO PERSONAGEM]</div>
+          {selecionado.imgUrl && (
+            <div className="w-80 h-80 overflow-hidden relative hidden md:block">
+              <Image
+                src={selecionado.imgUrl}
+                alt={selecionado.alt}
+                quality={60}
+                fill
+                sizes="100%"
+                className="object-contain"
+              />
+            </div>
+          )}
 
           <div>
             <AddCharForm
-              nomeChar={nomeChar}
+              nomeChar={selecionado.alt}
               userId={userId}
               lista={listaNaoAdicionados}
               personagens={personagensAdicionados}
@@ -90,12 +100,12 @@ const ButtonAddPersonagem = ({
           <div className="flex flex-row flex-wrap gap-2 justify-center mb-4">
             {listaNaoAdicionados.map((img) => (
               <Tooltip key={img.nome}>
-                <div className="relative w-28 h-24 rounded-sm bg-[rgba(107,100,243,0.43)] border shadow-[#0f172a96] shadow-inner">
+                <div className="relative w-20 h-20 shadow-[#0f172a96] rounded-md">
                   <TooltipTrigger asChild>
                     <Image
                       src={img.imgUrl}
                       alt={img.alt}
-                      quality={80}
+                      quality={100}
                       fill
                       sizes="100%"
                       className="cursor-pointer object-cover"

@@ -1,6 +1,7 @@
+import { redirect } from "next/navigation"
+
 import Sidebar from "@/components/Sidebar"
 import { getLoggedInUser } from "@/lib/actions/user.actions"
-import { redirect } from "next/navigation"
 
 export default async function MainLayout({
   children,

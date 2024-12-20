@@ -1,7 +1,8 @@
 import Image from "next/image"
 
-import CharStats from "./CharStats"
 import { Separator } from "@/components/ui/separator"
+
+import CharStats from "./CharStats"
 
 const CardChar = ({
   userId,
@@ -21,7 +22,7 @@ const CardChar = ({
           alt={img.alt}
           fill
           sizes="100%"
-          quality={80}
+          quality={100}
           className="object-cover"
         />
       </div>

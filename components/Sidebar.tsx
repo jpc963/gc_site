@@ -1,11 +1,13 @@
 "use client"
 
+import { CalendarDays, PackageOpen, SquareLibrary, User } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+
 import { cn } from "@/lib/utils"
+
 import FooterSidebar from "./FooterSidebar"
 import Logo from "./Logo"
-import { CalendarDays, PackageOpen, SquareLibrary, User } from "lucide-react"
 
 export const items = [
   {

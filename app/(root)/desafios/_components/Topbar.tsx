@@ -1,3 +1,6 @@
+import { Loader2 } from "lucide-react"
+import { useState } from "react"
+
 import { Button } from "@/components/ui/button"
 import { PersonagensIcons } from "@/constants"
 import {
@@ -5,8 +8,6 @@ import {
   editDesafiosConcluidos,
 } from "@/lib/actions/desafios.actions"
 import { cn } from "@/lib/utils"
-import { Loader2 } from "lucide-react"
-import { useState } from "react"
 
 interface DungeonProps {
   len: number

@@ -1,11 +1,13 @@
-import { Button } from "@/components/ui/button"
-import { PersonagensIcons } from "@/constants"
-import { cn } from "@/lib/utils"
 import { CircleCheck } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
-import Topbar from "./Topbar"
+
+import { Button } from "@/components/ui/button"
+import { PersonagensIcons } from "@/constants"
 import { getDesafiosConcluidos } from "@/lib/actions/desafios.actions"
+import { cn } from "@/lib/utils"
+
+import Topbar from "./Topbar"
 
 const CharDungeon = ({ nome, userId }: { nome: string; userId: string }) => {
   const [doc, setDoc] = useState<DocDungeonsType>([])
@@ -79,7 +81,7 @@ const CharDungeon = ({ nome, userId }: { nome: string; userId: string }) => {
                 src={personagem.imgUrl}
                 alt={personagem.alt}
                 fill
-                quality={80}
+                quality={100}
                 sizes="100%"
                 className="object-cover"
               />

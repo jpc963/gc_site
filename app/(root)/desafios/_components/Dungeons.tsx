@@ -1,10 +1,11 @@
 "use client"
 
+import dynamic from "next/dynamic"
+import { useState } from "react"
+
 import { Button } from "@/components/ui/button"
 import { DungeonNames } from "@/constants"
-import { useState } from "react"
 import { cn } from "@/lib/utils"
-import dynamic from "next/dynamic"
 
 const CharDungeonComponent = dynamic(() => import("./CharDungeon"))
 
