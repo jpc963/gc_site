@@ -1,116 +1,116 @@
 export const PersonagensIcons = [
   {
-    imgUrl: "/icons/personagens/CharIcon_Elesis.webp",
+    imgUrl: "/images/personagens/CharIcon_Elesis.webp",
     alt: "Elesis icon",
     nome: "Elesis",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Lire.webp",
+    imgUrl: "/images/personagens/CharIcon_Lire.webp",
     alt: "Lire icon",
     nome: "Lire",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Arme.webp",
+    imgUrl: "/images/personagens/CharIcon_Arme.webp",
     alt: "Arme icon",
     nome: "Arme",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Lass.webp",
+    imgUrl: "/images/personagens/CharIcon_Lass.webp",
     alt: "Lass icon",
     nome: "Lass",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Ryan.webp",
+    imgUrl: "/images/personagens/CharIcon_Ryan.webp",
     alt: "Ryan icon",
     nome: "Ryan",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Ronan.webp",
+    imgUrl: "/images/personagens/CharIcon_Ronan.webp",
     alt: "Ronan icon",
     nome: "Ronan",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Amy.webp",
+    imgUrl: "/images/personagens/CharIcon_Amy.webp",
     alt: "Amy icon",
     nome: "Amy",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Jin.webp",
+    imgUrl: "/images/personagens/CharIcon_Jin.webp",
     alt: "Jin icon",
     nome: "Jin",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Sieghart.webp",
+    imgUrl: "/images/personagens/CharIcon_Sieghart.webp",
     alt: "Sieghart icon",
     nome: "Sieghart",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Mari.webp",
+    imgUrl: "/images/personagens/CharIcon_Mari.webp",
     alt: "Mari icon",
     nome: "Mari",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Dio.webp",
+    imgUrl: "/images/personagens/CharIcon_Dio.webp",
     alt: "Dio icon",
     nome: "Dio",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Zero.webp",
+    imgUrl: "/images/personagens/CharIcon_Zero.webp",
     alt: "Zero icon",
     nome: "Zero",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Rey.webp",
+    imgUrl: "/images/personagens/CharIcon_Rey.webp",
     alt: "Rey icon",
     nome: "Rey",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Lupus.webp",
+    imgUrl: "/images/personagens/CharIcon_Lupus.webp",
     alt: "Lupus icon",
     nome: "Lupus",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Veigas.webp",
+    imgUrl: "/images/personagens/CharIcon_Veigas.webp",
     alt: "Veigas icon",
     nome: "Veigas",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Lin.webp",
+    imgUrl: "/images/personagens/CharIcon_Lin.webp",
     alt: "Lin icon",
     nome: "Lin",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Azin.webp",
+    imgUrl: "/images/personagens/CharIcon_Azin.webp",
     alt: "Azin icon",
     nome: "Azin",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Holy.webp",
+    imgUrl: "/images/personagens/CharIcon_Holy.webp",
     alt: "Holy icon",
     nome: "Holy",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Edel.webp",
+    imgUrl: "/images/personagens/CharIcon_Edel.webp",
     alt: "Edel icon",
     nome: "Edel",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Uno.webp",
+    imgUrl: "/images/personagens/CharIcon_Uno.webp",
     alt: "Uno icon",
     nome: "Uno",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Decane.webp",
+    imgUrl: "/images/personagens/CharIcon_Decane.webp",
     alt: "Decane icon",
     nome: "Decane",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Ai.webp",
+    imgUrl: "/images/personagens/CharIcon_Ai.webp",
     alt: "Ai icon",
     nome: "Ai",
   },
   {
-    imgUrl: "/icons/personagens/CharIcon_Kallia.webp",
+    imgUrl: "/images/personagens/CharIcon_Kallia.webp",
     alt: "Kallia icon",
     nome: "Kallia",
   },
@@ -142,44 +142,44 @@ export const PersonagensNomes = [
   "Kallia",
 ]
 
-export const DungeonsIcons = [
+export const Dungeonsimages = [
   {
-    imgUrl: "/icons/dungeons/Fornalha_Infernal_Icon.webp",
+    imgUrl: "/images/dungeons/Fornalha_Infernal_Icon.webp",
     alt: "Fornalha Infernal icon",
     nome: "Fornalha Infernal",
   },
   {
-    imgUrl: "/icons/dungeons/Altar_da_Ruina_Icon.webp",
+    imgUrl: "/images/dungeons/Altar_da_Ruina_Icon.webp",
     alt: "Altar da Ruína icon",
     nome: "Altar da Ruína",
   },
   {
-    imgUrl: "/icons/dungeons/Torre_das_Ilusoes_Icon.webp",
+    imgUrl: "/images/dungeons/Torre_das_Ilusoes_Icon.webp",
     alt: "Torre das Ilusões icon",
     nome: "Torre das Ilusões",
   },
   {
-    imgUrl: "/icons/dungeons/Covil_de_Berkas_Icon.webp",
+    imgUrl: "/images/dungeons/Covil_de_Berkas_Icon.webp",
     alt: "Covil de Berkas icon",
     nome: "Covil de Berkas",
   },
   {
-    imgUrl: "/icons/dungeons/Torre_da_Extincao_Icon.webp",
+    imgUrl: "/images/dungeons/Torre_da_Extincao_Icon.webp",
     alt: "Torre da Extinção icon",
     nome: "Torre da Extinção",
   },
   {
-    imgUrl: "/icons/dungeons/Terra_do_Julgamento_Icon.webp",
+    imgUrl: "/images/dungeons/Terra_do_Julgamento_Icon.webp",
     alt: "Terra do Julgamento icon",
     nome: "Terra do Julgamento",
   },
   {
-    imgUrl: "/icons/dungeons/Vazio_Icon.webp",
+    imgUrl: "/images/dungeons/Vazio_Icon.webp",
     alt: "Vazio icon",
     nome: "Vazio",
   },
   {
-    imgUrl: "/icons/dungeons/Vazio_Contaminacao_Icon.webp",
+    imgUrl: "/images/dungeons/Vazio_Contaminacao_Icon.webp",
     alt: "Vazio Contaminação icon",
     nome: "Vazio Contaminação",
   },
@@ -198,41 +198,118 @@ export const DungeonNames = [
 ]
 
 export const Items = [
-  { abrev: "moedaEpic", qtd: 0 },
-  { abrev: "pedacoMoedaEpic", qtd: 0 },
-  { abrev: "nucleoVulcanus", qtd: 0 },
-  { abrev: "nucleoNemophi", qtd: 0 },
-  { abrev: "nucleoGrandiel", qtd: 0 },
-  { abrev: "simbTerraJulga", qtd: 0 },
-  { abrev: "peroPrecHeroi", qtd: 0 },
-  { abrev: "fragAnelHark", qtd: 0 },
-  { abrev: "fragBrincoHark", qtd: 0 },
-  { abrev: "fragVisuChase", qtd: 0 },
-  { abrev: "fragPortal", qtd: 0 },
-  { abrev: "tickDesafioEpic", qtd: 0 },
-  { abrev: "tickOutroMundo", qtd: 0 },
-  { abrev: "tickEvento", qtd: 0 },
-  { abrev: "tickRaid", qtd: 0 },
-  { abrev: "propGp", qtd: 0 },
-  { abrev: "propUnica", qtd: 0 },
-  { abrev: "altAtrib", qtd: 0 },
-  { abrev: "redAtrib", qtd: 0 },
-  { abrev: "fort16", qtd: 0 },
-  { abrev: "fort17", qtd: 0 },
+  {
+    abrev: "pedraSombria",
+    qtd: 0,
+  },
+  {
+    abrev: "moedaEpic",
+    qtd: 0,
+  },
+  {
+    abrev: "pedacoMoedaEpic",
+    qtd: 0,
+  },
+  {
+    abrev: "nucleoVulcanus",
+    qtd: 0,
+  },
+  {
+    abrev: "nucleoNemophi",
+    qtd: 0,
+  },
+  {
+    abrev: "nucleoGrandiel",
+    qtd: 0,
+  },
+  {
+    abrev: "peroPrecHeroi",
+    qtd: 0,
+  },
+  {
+    abrev: "simbTerraJulga",
+    qtd: 0,
+  },
+  {
+    abrev: "fragAnelHark",
+    qtd: 0,
+  },
+  {
+    abrev: "fragBrincoHark",
+    qtd: 0,
+  },
+  {
+    abrev: "fragVisuChase",
+    qtd: 0,
+  },
+  {
+    abrev: "fragPortal",
+    qtd: 0,
+  },
+  {
+    abrev: "tickHeroico",
+    qtd: 0,
+  },
+  {
+    abrev: "tickDesafioEpic",
+    qtd: 0,
+  },
+  {
+    abrev: "tickOutroMundo",
+    qtd: 0,
+  },
+  {
+    abrev: "tickEvento",
+    qtd: 0,
+  },
+  {
+    abrev: "tickRaid",
+    qtd: 0,
+  },
+  {
+    abrev: "propGp",
+    qtd: 0,
+  },
+  {
+    abrev: "propUnica",
+    qtd: 0,
+  },
+  {
+    abrev: "altAtrib",
+    qtd: 0,
+  },
+  {
+    abrev: "redAtrib",
+    qtd: 0,
+  },
+  {
+    abrev: "fort16",
+    qtd: 0,
+  },
+  {
+    abrev: "fort17",
+    qtd: 0,
+  },
+  {
+    abrev: "pergAbertura",
+    qtd: 0,
+  },
 ]
 
 export const ItemsNames = [
+  "Pedra Sombria",
   "Moeda Épica",
   "Pdç Moeda Épica",
   "Núcleo Vulcanus",
   "Núcleo Nemophilla",
   "Núcleo Grandiel",
-  "Simb. T. Julgamento",
   "Pér. Prec. do Herói",
+  "Simb. T. Julgamento",
   "Frag. Anel Harkyon",
   "Frag. Brinco Harkyon",
   "Frag. Visual Chase",
   "Frag. Portal",
+  "Tck. Heróico",
   "Tck. Desafio Épico",
   "Tck. Outro Mundo",
   "Tck. Evento",
@@ -243,4 +320,5 @@ export const ItemsNames = [
   "Perg. Red. Atrib.",
   "Perg. Fort. +16",
   "Perg. Fort. +17",
+  "Perg. de Abertura",
 ]

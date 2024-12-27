@@ -1,10 +1,13 @@
 "use client"
 
+import Image from "next/image"
+import { useEffect, useState } from "react"
+
 import { Items, ItemsNames } from "@/constants"
+import { getArmazemUser } from "@/lib/actions/armazem.actions"
+
 import Buttons from "./Buttons"
 import Topbar from "./Topbar"
-import { useEffect, useState } from "react"
-import { getArmazemUser } from "@/lib/actions/armazem.actions"
 
 const Card = ({ userId }: { userId: string }) => {
   const [userItems, setUserItems] = useState<ArmazemUserProps>({
@@ -44,7 +47,16 @@ const Card = ({ userId }: { userId: string }) => {
                 </span>
               </div>
 
-              <div className="w-20 h-20 bg-[#1c1c34] rounded-md overflow-hidden m-auto mt-6 relative place-content-end"></div>
+              <div className="w-20 h-20 bg-[#1c1c34] rounded-md overflow-hidden m-auto mt-6 relative">
+                <Image
+                  src={`/images/items/${item.abrev}.webp`}
+                  alt={`${item.abrev} image`}
+                  quality={100}
+                  fill
+                  sizes="100%"
+                  className="object-contain p-2"
+                />
+              </div>
 
               <Buttons
                 userItem={userItems.items}

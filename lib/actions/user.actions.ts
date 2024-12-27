@@ -1,14 +1,16 @@
 "use server"
 
-import { cookies } from "next/headers"
-import { parseStringify } from "@/lib/utils"
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth"
-import { auth, db } from "../firebase"
 import { doc, getDoc, setDoc } from "firebase/firestore"
+import { cookies } from "next/headers"
+
 import { Items } from "@/constants"
+import { parseStringify } from "@/lib/utils"
+
+import { auth, db } from "../firebase"
 
 export const signIn = async ({ email, password }: signInParams) => {
   let user
@@ -84,7 +86,6 @@ export async function getLoggedInUser() {
     )
 
     return parseStringify(user)
-    //eslint-disable-next-line
   } catch (error) {
     console.log("[GET_LOGGED_IN_USER]: ", error)
     return null

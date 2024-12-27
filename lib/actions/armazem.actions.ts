@@ -1,8 +1,11 @@
 "use server"
 
-import { parseStringify } from "@/lib/utils"
-import { db } from "../firebase"
 import { doc, getDoc, setDoc } from "firebase/firestore"
+
+import { Items } from "@/constants"
+import { parseStringify } from "@/lib/utils"
+
+import { db } from "../firebase"
 
 export async function getArmazemUser({ userId }: { userId: string }) {
   try {
@@ -14,6 +17,14 @@ export async function getArmazemUser({ userId }: { userId: string }) {
     if (!armazem) {
       return null
     }
+
+    // adicionar um item novo caso não exista no armazem
+    const itensAtualizados = Items.map((item) => {
+      const found = armazem.items.find((i) => i.abrev === item.abrev)
+      return found ? found : { abrev: item.abrev, qtd: 0 }
+    }) as QtdItemType[]
+
+    armazem.items = itensAtualizados
 
     return parseStringify(armazem)
   } catch (error) {

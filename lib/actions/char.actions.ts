@@ -63,8 +63,6 @@ export async function getHighChar(userId: string) {
       }
     )) as Personagem
 
-    console.log(highChar)
-
     return highChar
   } catch (error) {
     console.log("[ADD_PERSONAGENS_USER]: ", error)

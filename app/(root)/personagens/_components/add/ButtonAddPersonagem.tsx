@@ -42,7 +42,7 @@ const ButtonAddPersonagem = ({
 
   const openInputs = (nome: string) => {
     setSelecionado({
-      imgUrl: `/icons/personagens/${nome}_00.png`,
+      imgUrl: `/images/personagens/${nome}_00.webp`,
       alt: nome,
     })
   }

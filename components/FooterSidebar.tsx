@@ -1,7 +1,6 @@
-'use client'
+import { LogOut } from "lucide-react"
 
 import { logoutAccount } from "@/lib/actions/user.actions"
-import { LogOut } from "lucide-react"
 
 const FooterSidebar = () => {
   return (

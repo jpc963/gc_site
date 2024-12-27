@@ -1,6 +1,7 @@
 "use client"
 
 import { CalendarDays, PackageOpen, SquareLibrary, User } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -32,11 +33,19 @@ export const items = [
   },
 ]
 
-const Sidebar = () => {
+const Sidebar = ({
+  username,
+  cLevel,
+  highCharName,
+}: {
+  username: string
+  cLevel: number
+  highCharName?: string
+}) => {
   const pathname = usePathname()
 
   return (
-    <section className="sticky left-0 top-0 flex h-screen w-fit flex-col justify-between pt-8 max-md:hidden sm:p-4 xl:p-6 2xl:w-[355px] shadow-md bg-[#1c1c22] z-20">
+    <section className="sticky left-0 top-0 flex h-screen w-fit flex-col justify-between pt-8 max-sm:hidden sm:p-4 md:p-6 md:w-[300px] xl:w-[355px] shadow-md bg-[#1c1c22] z-20">
       <nav className="flex flex-col gap-4">
         <div className="flex flex-col items-center">
           <Logo
@@ -44,7 +53,28 @@ const Sidebar = () => {
             h={0}
           />
 
-          <h1 className="mb-12 text-[26px] font-bold">Tracker</h1>
+          <h1 className="mb-8 text-[26px] font-bold">Tracker</h1>
+        </div>
+
+        <div className="text-center mb-8 place-items-center">
+          <div className="overflow-hidden relative w-16 h-16 md:w-20 md:h-20 rounded-md mb-1">
+            {highCharName && (
+              <Image
+                src={`/images/personagens/CharIcon_${highCharName}.webp`}
+                alt={`${highCharName} image`}
+                quality={100}
+                fill
+                sizes="100%"
+                className="object-cover"
+              />
+            )}
+          </div>
+
+          <div>
+            <h3>Bem vindo, {username}</h3>
+
+            <p>cLvL - {cLevel}</p>
+          </div>
         </div>
 
         {items.map((item) => {
