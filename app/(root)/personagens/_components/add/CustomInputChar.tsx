@@ -1,4 +1,6 @@
-import { addPersonagemFormSchema } from "@/lib/utils"
+import { Control, FieldPath } from "react-hook-form"
+import { z } from "zod"
+
 import {
   FormControl,
   FormField,
@@ -6,8 +8,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Control, FieldPath } from "react-hook-form"
-import { z } from "zod"
+import { addPersonagemFormSchema } from "@/lib/utils"
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const formSchemaChar = addPersonagemFormSchema()
@@ -27,6 +28,7 @@ const CustomInputChar = ({
   label,
   id,
   type,
+  placeholder,
 }: CustomInputPropsChar) => {
   return (
     <FormField
@@ -42,6 +44,7 @@ const CustomInputChar = ({
             <FormControl>
               <Input
                 className="text-[16px] placeholder:text-[16px] placeholder:text-gray-500 focus-visible:ring-0"
+                placeholder={placeholder ? placeholder : ""}
                 id={id}
                 type={type ? type : "text"}
                 {...field}
