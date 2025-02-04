@@ -2,7 +2,7 @@
 
 import { Loader2 } from "lucide-react"
 import Link from "next/link"
-import React, { useState } from "react"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -123,13 +123,13 @@ const AuthForm = ({ type }: { type: string }) => {
               disabled={isLoading}
             >
               {isLoading ? (
-                <React.Fragment>
+                <>
                   <Loader2
                     size={20}
                     className="animate-spin"
                   />
                   &nbsp; Carregando...
-                </React.Fragment>
+                </>
               ) : type === "login" ? (
                 "Entrar"
               ) : (

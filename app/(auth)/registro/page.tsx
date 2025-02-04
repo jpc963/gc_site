@@ -1,4 +1,4 @@
-import AuthForm from "@/app/(auth)/_components/AuthForm"
+import AuthForm from "../_components/AuthForm"
 
 const Registro = () => {
   return (

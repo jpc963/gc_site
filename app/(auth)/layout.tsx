@@ -1,5 +1,6 @@
-import { getLoggedInUser } from "@/lib/actions/user.actions"
 import { redirect } from "next/navigation"
+
+import { getLoggedInUser } from "@/lib/actions/user.actions"
 
 export default async function AuthLayout({
   children,
@@ -7,7 +8,7 @@ export default async function AuthLayout({
   children: React.ReactNode
 }>) {
   const loggedIn = await getLoggedInUser()
-  if (loggedIn) redirect("/")
+  if (loggedIn) redirect("/dashboard")
 
   return (
     <main className="flex min-h-screen w-full justify-between items-center">

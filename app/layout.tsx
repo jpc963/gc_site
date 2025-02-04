@@ -1,8 +1,12 @@
 import type { Metadata } from "next"
-import { Kanit } from "next/font/google"
 import "./globals.css"
 
-const kanit = Kanit({ subsets: ["latin"], weight: ["300", "400", "600"] })
+import { Montserrat } from "next/font/google"
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["300", "400", "600"],
+})
 
 export const metadata: Metadata = {
   title: "GC Tracker",
@@ -16,9 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body
-        className={`${kanit.className} antialiased w-full h-screen`}
-      >
+      <body className={`${montserrat.className} antialiased w-full h-screen`}>
         {children}
       </body>
     </html>
