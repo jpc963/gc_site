@@ -26,6 +26,7 @@ declare type Personagem = {
   totalAtk: number
   level: number
   gp: number
+  awake: boolean
 }
 
 declare type PersonagemUser = {
@@ -44,6 +45,7 @@ declare type EditPersonagem = {
   totalAtk: number
   level: number
   gp: number
+  awake: boolean
 }
 
 declare interface AddCharFormProps {

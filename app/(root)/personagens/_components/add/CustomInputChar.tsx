@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { addPersonagemFormSchema } from "@/lib/utils"
+import { Checkbox } from "@/components/ui/checkbox"
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const formSchemaChar = addPersonagemFormSchema()
@@ -36,19 +37,31 @@ const CustomInputChar = ({
       name={name}
       render={({ field }) => (
         <div className="flex flex-col gap-1.5">
-          <FormLabel className="text-[14px] w-full max-w-[280px] font-medium text-gray-200">
+          <FormLabel
+            className="text-[14px] w-full max-w-[280px] font-medium text-gray-200"
+            htmlFor={id}
+          >
             {label}
           </FormLabel>
 
           <div className="flex w-full flex-col">
             <FormControl>
-              <Input
-                className="text-[16px] placeholder:text-[16px] placeholder:text-gray-500 focus-visible:ring-0"
-                placeholder={placeholder ? placeholder : ""}
-                id={id}
-                type={type ? type : "text"}
-                {...field}
-              />
+              {type === "boolean" ? (
+                <Checkbox
+                  id={id}
+                  checked={!!field.value}
+                  onCheckedChange={field.onChange}
+                />
+              ) : (
+                <Input
+                  className="text-[16px] placeholder:text-[16px] placeholder:text-gray-500 focus-visible:ring-0"
+                  placeholder={placeholder ? placeholder : ""}
+                  id={id}
+                  type={type ? type : "text"}
+                  {...field}
+                  value={typeof field.value === "boolean" ? "" : field.value}
+                />
+              )}
             </FormControl>
 
             <FormMessage className="text-[12px] text-red-500 mt-2" />

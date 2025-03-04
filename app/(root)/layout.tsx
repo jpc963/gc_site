@@ -15,14 +15,14 @@ export default async function MainLayout({
   const highChar = await getHighChar(loggedIn.userId)
 
   return (
-    <main className="w-full flex">
+    <main className="w-screen flex">
       <Sidebar
         username={loggedIn.username}
         cLevel={loggedIn.cLevel}
         highCharName={highChar?.nome}
       />
 
-      <div className="flex flex-col w-full">{children}</div>
+      <div className="w-full">{children}</div>
     </main>
   )
 }

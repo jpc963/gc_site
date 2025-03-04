@@ -22,12 +22,13 @@ const EditCharForm = ({
   // se trocar o values para defaultValue, o form.handleSubmit não funciona, não sei porque
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    values: {
+    defaultValues: {
       userId,
       nome: personagem.nome,
       totalAtk: personagem.totalAtk || 0,
       level: personagem.level || 0,
       gp: personagem.gp || 0,
+      awake: personagem.awake,
     },
   })
 
@@ -41,6 +42,7 @@ const EditCharForm = ({
           totalAtk: data.totalAtk,
           level: data.level,
           gp: data.gp,
+          awake: data.awake,
         }
       }
 
@@ -51,8 +53,6 @@ const EditCharForm = ({
       userId,
       personagens: personagensAtualizados,
     })
-
-    console.log(personagensAtualizados)
 
     window.location.reload()
 
@@ -97,6 +97,14 @@ const EditCharForm = ({
           label="GP:"
           id={personagem.nome + "GP"}
           type="number"
+        />
+
+        <CustomInputEditChar
+          control={form.control}
+          name="awake"
+          label="Despertado:"
+          id={personagem.nome + "awake"}
+          type="boolean"
         />
 
         <SubmitButton

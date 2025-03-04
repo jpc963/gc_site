@@ -1,19 +1,24 @@
 import { LogOut } from "lucide-react"
 
 import { logoutAccount } from "@/lib/actions/user.actions"
+import { cn } from "@/lib/utils"
 
-const FooterSidebar = () => {
+const FooterSidebar = ({ isOpen }: { isOpen: boolean }) => {
   return (
-    <footer>
+    <footer className={cn({ "self-center": !isOpen })}>
       <button
         onClick={() => logoutAccount()}
-        className="flex gap-3 items-center py-1 md:p-3 2xl:p-4 justify-start"
+        className="flex gap-3 items-center justify-start"
       >
-        <div className="relative border-r border-separate">
-          <LogOut className="size-6 ml-4 mr-2" />
+        <div
+          className={cn("relative", isOpen ? "border-r border-separate" : "")}
+        >
+          <LogOut className={cn("size-6", isOpen ? "ml-4 mr-2" : "")} />
         </div>
 
-        <p className="text-[16px] font-semibold">Sair</p>
+        <p className={cn(isOpen ? "text-[16px] font-semibold" : "hidden")}>
+          Sair
+        </p>
       </button>
     </footer>
   )

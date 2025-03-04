@@ -6,7 +6,7 @@ import TopbarPersonagens from "./TopbarPersonagens"
 
 const CardCharComponent = dynamic(() => import("./CardChar"))
 
-const ListaPersonagens = async ({
+const ListaPersonagens = ({
   userId,
   documents,
 }: {
@@ -17,12 +17,17 @@ const ListaPersonagens = async ({
     documents.personagens?.length > 0
       ? documents.personagens
           .map((p) => p)
-          .sort((a, b) => a.nome.localeCompare(b.nome))
+          .sort((a, b) => b.totalAtk - a.totalAtk)
       : []
 
   const listaImgs = PersonagensIcons.filter((img) =>
     listaAdicionados.find((p) => p.nome === img.nome)
-  ).sort((a, b) => a.nome.localeCompare(b.nome))
+  ).sort((a, b) => {
+    const atkA = listaAdicionados.find((p) => p.nome === a.nome)?.totalAtk || 0
+    const atkB = listaAdicionados.find((p) => p.nome === b.nome)?.totalAtk || 0
+
+    return atkB - atkA
+  })
 
   return (
     <>

@@ -5,8 +5,9 @@ import Dungeons from "./_components/Dungeons"
 const Desafios = async () => {
   const userId = (await cookies().get("user-session")?.value) || ""
 
+  //max-w-screen-2xl
   return (
-    <section className="h-screen overflow-y-auto">
+    <section>
       <Dungeons userId={userId} />
     </section>
   )

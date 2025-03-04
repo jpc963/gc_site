@@ -17,7 +17,7 @@ interface DungeonProps {
   doc: EditDungeonsParams | null
 }
 
-const Topbar = ({ len, func, userId, infos, doc }: DungeonProps) => {
+const SaveButton = ({ len, func, userId, infos, doc }: DungeonProps) => {
   const dgUser = { userId, nome: infos.nome, personagens: infos.personagens }
   const [isLoading, setIsLoading] = useState(false)
 
@@ -67,4 +67,4 @@ const Topbar = ({ len, func, userId, infos, doc }: DungeonProps) => {
   )
 }
 
-export default Topbar
+export default SaveButton

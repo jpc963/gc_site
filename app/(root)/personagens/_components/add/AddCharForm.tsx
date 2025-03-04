@@ -27,6 +27,7 @@ const AddCharForm = ({
       totalAtk: 1,
       level: 1,
       gp: 1,
+      awake: false,
     },
   })
 
@@ -76,7 +77,19 @@ const AddCharForm = ({
           type="number"
         />
 
-        <SubmitButton title="Adicionar" isLoading={isLoading} submitting="Adicionando..."/>
+        <CustomInputChar
+          control={form.control}
+          name="awake"
+          label="Despertado"
+          id={nomeChar + "awake"}
+          type="boolean"
+        />
+
+        <SubmitButton
+          title="Adicionar"
+          isLoading={isLoading}
+          submitting="Adicionando..."
+        />
       </form>
     </Form>
   )

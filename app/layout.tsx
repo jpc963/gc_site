@@ -20,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${montserrat.className} antialiased w-full h-screen`}>
+      <body
+        className={`${montserrat.className} antialiased w-screen h-screen overflow-x-hidden`}
+      >
         {children}
       </body>
     </html>

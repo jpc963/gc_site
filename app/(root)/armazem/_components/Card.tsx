@@ -41,8 +41,8 @@ const Card = ({ userId }: { userId: string }) => {
               className="w-48 h-68 pb-4 bg-[#1c1c29] rounded-md shadow-md group hover:scale-105 transition-transform duration-150"
               key={item.abrev}
             >
-              <div className="w-3/5 h-12 bg-[#7c3aed] m-auto rounded-b-md place-content-center">
-                <span className="font-semibold text-center block">
+              <div className="w-3/5 h-16 bg-[#7c3aed] m-auto rounded-b-md place-content-center p-2">
+                <span className="font-semibold text-center block text-sm">
                   {ItemsNames[index]}
                 </span>
               </div>
@@ -55,6 +55,7 @@ const Card = ({ userId }: { userId: string }) => {
                   fill
                   sizes="100%"
                   className="object-contain p-2"
+                  title={`${ItemsNames[index]}`}
                 />
               </div>
 

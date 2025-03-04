@@ -46,6 +46,7 @@ export const addPersonagemFormSchema = () =>
       .min(0, "O gp do personagem pode ser no mínimo 0")
       .max(40000000, "O gp do personagem pode ser no máximo 40.000.000")
       .default(0),
+    awake: z.boolean().default(false),
   })
 
 export const editPersonagemFormSchema = () =>
@@ -67,4 +68,5 @@ export const editPersonagemFormSchema = () =>
       .min(0, "O gp do personagem pode ser no mínimo 0")
       .max(40000000, "O gp do personagem pode ser no máximo 40.000.000")
       .default(0),
+    awake: z.boolean().default(false),
   })

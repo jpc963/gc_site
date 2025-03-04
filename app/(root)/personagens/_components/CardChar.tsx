@@ -17,6 +17,16 @@ const CardChar = ({
       </div>
 
       <div className="w-20 h-20 bg-[#1c1c34] rounded-md overflow-hidden m-auto mt-6 relative shadow-md">
+        {personagem.awake && (
+          <Image
+            src="/images/personagens/Despertar.webp"
+            alt="Image despertado"
+            width={28}
+            height={28}
+            className="absolute -top-1 -right-1 z-20 w-auto h-auto"
+          />
+        )}
+
         <Image
           src={img.imgUrl}
           alt={img.alt}
