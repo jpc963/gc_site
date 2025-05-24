@@ -36,7 +36,10 @@ const CustomInput = ({
       name={name}
       render={({ field }) => (
         <div className="flex flex-col gap-1.5">
-          <FormLabel className="text-[14px] w-full max-w-[280px] font-medium text-gray-200">
+          <FormLabel
+            className="text-[14px] w-full max-w-[280px] font-medium text-gray-200"
+            htmlFor={id}
+          >
             {label}
           </FormLabel>
 
